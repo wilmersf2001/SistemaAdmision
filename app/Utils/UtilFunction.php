@@ -14,6 +14,13 @@ use Carbon\Carbon;
 
 class  UtilFunction
 {
+  public static function getDateToday()
+  {
+    $today = Carbon::now()->locale('es_PE');
+    $formattedDate = $today->isoFormat('D [de] MMMM [del] YYYY');
+    return $formattedDate;
+  }
+
   public static function saveQr(array $requestApplicant)
   {
     $processNumber = Proceso::getProcessNumber();
@@ -29,13 +36,6 @@ class  UtilFunction
     $qrCode = QrCode::encoding('UTF-8')->generate($dataQr);
     $filename = $nameQr . '.svg';
     Storage::disk(Constants::DISK_STORAGE)->put(Constants::RUTA_FOTO_QR . $filename, $qrCode);
-  }
-
-  public static function getDateToday()
-  {
-    $today = Carbon::now()->locale('es_PE');
-    $formattedDate = $today->isoFormat('D [de] MMMM [del] YYYY');
-    return $formattedDate;
   }
 
   public static function getImagePathByDni($dni)
@@ -190,5 +190,21 @@ class  UtilFunction
       Storage::disk(Constants::DISK_STORAGE)->move($sourcePath . $nameFile, $destinationPath . $newNameFile);
     }
     return true;
+  }
+
+  public static function validateQr($applicant, $dni)
+  {
+    $exist = Postulante::where('nombres', $applicant['nombres'])
+      ->where('ap_paterno', $applicant['apPaterno'])
+      ->where('ap_materno', $applicant['apMaterno'])
+      ->exists();
+
+    $hash_md5 = md5($dni);
+    $search_md5 = 'QR' . $hash_md5;
+
+    if (!$exist) {
+      return self::moveQrImageByDni($search_md5);
+    }
+    return false;
   }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inscripcion;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApplicantRequest;
+use App\Http\Requests\UpdateApplicantRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Utils\UtilFunction;
 use App\Models\Postulante;
@@ -78,5 +79,31 @@ class ApplicantController extends Controller
     public function finalMessage()
     {
         return view('inscripcion.final-message');
+    }
+
+    public function update(UpdateApplicantRequest $request, Postulante $applicant)
+    {
+        $generateQr = UtilFunction::validateQr($request->all(), $applicant->num_documento);
+
+        $applicant->update([
+            'nombres' => trim(strtoupper($request->nombres)),
+            'ap_paterno' => trim(strtoupper($request->apPaterno)),
+            'ap_materno' => trim(strtoupper($request->apMaterno)),
+            'correo' => $request->correo,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'telefono_ap' => $request->telefono_ap,
+            'distrito_nac_id' => $request->distrito_n,
+            'distrito_res_id' => $request->distrito_r,
+            'colegio_id' => $request->colegioId,
+            'universidad_id' => $request->filled('idUniversity') ? $request->idUniversity : $applicant->universidad_id,
+        ]);
+
+        if ($generateQr) {
+            UtilFunction::saveQr($applicant->id);
+        }
+
+        return redirect()->route('home.modifyApplicant')->with('success', 'Datos del postulante actualizados correctamente');
     }
 }

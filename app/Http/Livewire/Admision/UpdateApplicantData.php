@@ -55,6 +55,17 @@ class UpdateApplicantData extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function mount(DataService $dataService)
+    {
+        $this->departments = $dataService->getDepartaments();
+        $this->districtsReside = $dataService->getDistricts();
+        $this->provincesReside = $dataService->getProvinces();
+        $this->districtsBirth = $dataService->getDistricts();
+        $this->provincesBirth = $dataService->getProvinces();
+        $this->academicPrograms = $dataService->getAcademicsProgram();
+        $this->modalities = $dataService->getModalities();
+    }
+
     public function render()
     {
         if ($this->showSchools) {

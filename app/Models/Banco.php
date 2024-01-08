@@ -30,4 +30,10 @@ class Banco extends Model
         'monto_depo',
         'descripcion_depo',
     ];
+
+    public static function getImporteByNumDoc($numDoc)
+    {
+        $importe = Banco::where('num_documento', $numDoc)->value('importe');
+        return $importe;
+    }
 }

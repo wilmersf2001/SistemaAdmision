@@ -252,11 +252,27 @@
             </div>
             <div class="px-4">
                 <div class="grid md:grid-cols-3 md:gap-6">
-                    <x-input.form span="Teléfono del Postulante" name="telefono" model="applicant.telefono"
-                        placeholder="Ejem: 955123456" maxlength='9' />
+                    <label class="block mb-6">
+                        <span
+                            class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-900">
+                            Teléfono del Postulante
+                        </span>
+                        <input type="tel" name="telefono" maxlength='9' placeholder="Ejem: 955123456"
+                            wire:model="applicant.telefono" oninput="validarNumeroTelefono(this)"
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
+                        <x-input.error for="applicant.telefono" />
+                    </label>
 
-                    <x-input.form span="Teléfono del Apoderado" name="telefono_ap" model="applicant.telefono_ap"
-                        placeholder="Ejem: 955123456" maxlength='9' />
+                    <label class="block mb-6">
+                        <span
+                            class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-900">
+                            Teléfono del Apoderado
+                        </span>
+                        <input type="tel" name="telefono_ap" maxlength='9' placeholder="Ejem: 955123456"
+                            wire:model="applicant.telefono_ap" oninput="validarNumeroTelefono(this)"
+                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
+                        <x-input.error for="applicant.telefono_ap" />
+                    </label>
 
                     <x-input.form span="Correo Electrónico" name="correo" model="applicant.correo" type="email"
                         placeholder="Ejem: postulante@gmail.com" />
