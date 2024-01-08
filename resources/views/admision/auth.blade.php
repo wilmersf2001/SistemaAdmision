@@ -21,7 +21,7 @@
 
         .screen {
             position: relative;
-            height: 600px;
+            height: 590px;
             width: 360px;
         }
 

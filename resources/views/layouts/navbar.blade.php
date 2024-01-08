@@ -68,78 +68,78 @@
             aria-label="Sidebar">
             <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
                 <ul class="space-y-2 font-medium">
-                    {{-- @can('validar-fotos') --}}
-                    <li>
-                        <a href={{ route('home') }}
-                            class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <x-icons.home />
-                            <span class="flex-1 ms-3 whitespace-nowrap font-normal">Home</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('validar-fotos') --}}
-                    <li>
-                        <button type="button"
-                            class="flex items-center w-full px-3 py-2 text-base text-gray-900 transition rounded-lg group hover:bg-gray-100"
-                            aria-controls="dropdown-email" data-collapse-toggle="dropdown-email">
-                            <x-icons.mail />
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-normal">Enviar
-                                correos</span>
-                            <x-icons.chevron-down />
-                        </button>
-                        <ul id="dropdown-email" class="hidden py-2 space-y-2 font-normal">
-                            <li>
-                                <a href={{ route('applicant-photo.validPhotos') }}
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
-                                    validos</a>
-                            </li>
-                            <li>
-                                <a href={{ route('applicant-photo.validRectifiedPhotos') }}
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
-                                    rectificados</a>
-                            </li>
-                            <li>
-                                <a href={{ route('applicant-photo.observedPhotos') }}
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
-                                    observados</a>
-                            </li>
-                            <li>
-                                <a href={{ route('applicant-photo.rectifyphotos') }}
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Reiterar
-                                    observación</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('modificar-postulante') --}}
-                    <li>
-                        <a href={{ route('home.modifyApplicant') }}
-                            class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <x-icons.pencil flag='0' size='5' />
-                            <span class="flex-1 ms-3 whitespace-nowrap font-normal">Modificar</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('visualizar-constancias') --}}
-                    <li>
-                        <a {{-- href={{ route('home.inscriptionComprobant') }} --}}
-                            class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <x-icons.doc />
-                            <span class="flex-1 ms-3 whitespace-nowrap font-normal">Ver ficha</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{-- @can('usuarios') --}}
-                    <li>
-                        <a href={{ route('home.user') }}
-                            class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                            <x-icons.users />
-                            <span class="flex-1 ms-3 whitespace-nowrap font-normal">Usuarios</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
+                    @can('validar-fotos')
+                        <li>
+                            <a href={{ route('home') }}
+                                class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                <x-icons.home />
+                                <span class="flex-1 ms-3 whitespace-nowrap font-normal">Home</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('validar-fotos')
+                        <li>
+                            <button type="button"
+                                class="flex items-center w-full px-3 py-2 text-base text-gray-900 transition rounded-lg group hover:bg-gray-100"
+                                aria-controls="dropdown-email" data-collapse-toggle="dropdown-email">
+                                <x-icons.mail />
+                                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-normal">Enviar
+                                    correos</span>
+                                <x-icons.chevron-down />
+                            </button>
+                            <ul id="dropdown-email" class="hidden py-2 space-y-2 font-normal">
+                                <li>
+                                    <a href={{ route('applicant-photo.validPhotos') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
+                                        validos</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('applicant-photo.validRectifiedPhotos') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
+                                        rectificados</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('applicant-photo.observedPhotos') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
+                                        observados</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('applicant-photo.rectifyphotos') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Reiterar
+                                        observación</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
+                    @can('modificar-postulante')
+                        <li>
+                            <a href={{ route('home.modifyApplicant') }}
+                                class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                <x-icons.pencil flag='0' size='5' />
+                                <span class="flex-1 ms-3 whitespace-nowrap font-normal">Modificar</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('visualizar-constancias')
+                        <li>
+                            <a href={{ route('home.inscriptionComprobant') }}
+                                class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                <x-icons.doc />
+                                <span class="flex-1 ms-3 whitespace-nowrap font-normal">Ver ficha</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('usuarios')
+                        <li>
+                            <a href={{ route('home.user') }}
+                                class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                                <x-icons.users />
+                                <span class="flex-1 ms-3 whitespace-nowrap font-normal">Usuarios</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
-                {{-- <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200">
+                <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200">
                     @can('usuarios')
                         <li>
                             <a href={{ route('home.processOpening') }}
@@ -198,7 +198,7 @@
                             </ul>
                         </li>
                     @endcan
-                </ul> --}}
+                </ul>
             </div>
         </aside>
 

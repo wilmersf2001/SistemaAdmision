@@ -68,26 +68,26 @@ class HomeController extends Controller
 
     public function uploadTxtFile()
     {
-        return view('payments.upload-txt-file');
+        return view('admision.payments.upload-txt-file');
     }
     public function uploadedFiles()
     {
-        return view('payments.uploaded-files');
+        return view('admision.payments.uploaded-files');
     }
 
     public function processOpening()
     {
-        return view('process');
+        return view('admision.process');
     }
 
     public function assignVacancies()
     {
-        return view('vacancy-distribution.assign-vacancies');
+        return view('admision.vacancy-distribution.assign-vacancies');
     }
 
     public function vacancyDistribution()
     {
-        return view('vacancy-distribution.vacancy-distribution');
+        return view('admision.vacancy-distribution.vacancy-distribution');
     }
     public function restricted()
     {

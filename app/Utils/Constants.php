@@ -58,6 +58,10 @@ class Constants
   public const CARPETA_FOTO_CARNET = 'foto-carnet/';
   public const CARPETA_DNI_ANVERSO = 'dni-anverso/';
   public const CARPETA_DNI_REVERSO = 'dni-reverso/';
+
   // MODALIDAD UNIVERSIDAD
   public const MODALIDAD_TITULADOS_TRASLADO = [4, 5];
+
+  //CODIGOS DE CONCEPTO ADMISION
+  public const NUMERO_CONCEPTO_ADMISION = ['345', '489', '997', '998', '999'];
 }

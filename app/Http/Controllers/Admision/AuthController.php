@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admision;
 use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    use HasRoles;
+
     public function showLoginForm()
     {
         return view('admision.auth');
@@ -24,8 +27,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             $user = Auth::user();
-            return redirect()->intended('home');
-            /* if ($user->hasRole('admin')) {
+            if ($user->hasRole('admin')) {
                 return redirect()->intended('home');
             } elseif ($user->hasRole('modify')) {
                 return redirect()->intended('modificar-postulante');
@@ -35,7 +37,7 @@ class AuthController extends Controller
                 return redirect()->intended('/restringido');
             } else {
                 return redirect()->intended('/');
-            } */
+            }
         }
 
         return back()->withErrors([
