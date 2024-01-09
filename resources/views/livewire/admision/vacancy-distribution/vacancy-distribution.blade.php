@@ -25,10 +25,10 @@
             </div>
         </div>
 
-        <div role="list" class="grid gap-x-8 gap-y-6 sm:grid-cols-1 ms:gap-y-10">
+        <div role="list" class="grid gap-x-8 sm:grid-cols-1 ms:gap-y-10">
             @if ($academicProgramId)
                 @if ($academicProgramsByModality->count() > 0)
-                    <div>
+                    <div class="mb-4">
                         <span
                             class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">MODALIDAD:
                             {{ $academicProgramsByModality->first()->modalidad->descripcion }}</span>
@@ -80,10 +80,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        @if ($academicProgramsByModality->total() > 10)
-                            {{ $academicProgramsByModality->links() }}
-                        @endif
                     </div>
+                    @if ($academicProgramsByModality->total() > 10)
+                        {{ $academicProgramsByModality->links() }}
+                    @endif
                 @else
                     <div class="p-4 my-6 text-sm text-blue-800 rounded-lg bg-blue-50 animate-fade-in" role="alert">
                         <span class="font-medium">No se encontraron resultado en la busqueda</span>

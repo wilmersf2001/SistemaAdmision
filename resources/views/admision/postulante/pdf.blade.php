@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Postulante {{ $postulante->num_documento }}</title>
+    <title>Postulante DNI:{{ $postulante->num_documento }}</title>
     <style>
         * {
             font-family: Arial, sans-serif;
@@ -75,10 +75,6 @@
             padding-top: 20px;
         }
 
-        .left-column .info-contacto {
-            margin-top: 10px;
-        }
-
         .left-column .info-contacto ul {
             list-style: none;
             padding: 10px;
@@ -95,7 +91,7 @@
         }
 
         .right-column .info-contacto {
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .right-column .info-contacto ul {
@@ -124,7 +120,7 @@
         }
 
         .declaracion li {
-            padding: 5px 10px;
+            padding: 2px 10px;
             background-color: #ECF8F9;
             border-radius: 10px;
         }
@@ -192,21 +188,25 @@
                     <h5 class="items">DATOS PERSONALES</h5>
                     <ul>
                         <li style="display: inline-block; margin-right:160px"><b>DNI:</b>
-                            {{ $postulante->num_documento }}
-                        </li>
+                            {{ $postulante->num_documento }}</li>
                         <li style="display: inline-block;"><b>Fecha de nacimiento:</b>
                             {{ $postulante->fecha_nacimiento }}</li>
-                        <li><b>Nombres y Apellidos:</b> {{ $postulante->nombres }} {{ $postulante->ap_paterno }}
+                        <li><b>Nombres y Apellidos: </b> {{ $postulante->nombres }} {{ $postulante->ap_paterno }}
                             {{ $postulante->ap_materno }}</li>
-                        <li><b>{{ $laberBirth }}:</b> {{ $lugarNacimiento }}</li>
-                        <li><b>Lugar de residencia:</b> {{ $lugarResidencia }}</li>
-                        <li><b>Dirección:</b> {{ $postulante->direccion }}</li>
+                        @if ($isMinor)
+                            <li><b>Apoderado: </b>
+                                {{ $postulante->nombres_apoderado . ' ' . $postulante->ap_paterno_apoderado . ' ' . $postulante->ap_materno_apoderado }}
+                            </li>
+                        @endif
+                        <li><b>{{ $laberBirth }}: </b>{{ $lugarNacimiento }}</li>
+                        <li><b>Lugar de residencia: </b> {{ $lugarResidencia }}</li>
+                        <li><b>Dirección: </b>{{ $postulante->direccion }}</li>
                     </ul>
                 </div>
                 <div class="info-contacto">
                     <h5 class="items">INFORMACIÓN ACADÉMICA</h5>
                     <ul>
-                        <li><b>Lugar de estudio:</b> {{ $lugarColegio }}</li>
+                        <li><b>Lugar de estudio: </b>{{ $lugarColegio }}</li>
                         <li><b>Colegio:</b> {{ $colegio }}</li>
                         <li style="display: inline-block; margin-right:100px"><b>Tipo de colegio:</b>
                             {{ $tipoColegio }}</li>
@@ -238,9 +238,7 @@
                             Reglamento del presente Concurso de Admisión).
                         </li>
                         <li>
-                            He culminado el 5to año de Educación Secundaria antes del Concurso de Admisión
-                            .
-                        </li>
+                            He culminado el 5to año de Educación Secundaria en el año 2023. </li>
                     </ul>
                 </div>
             </td>
@@ -248,18 +246,18 @@
                 <div class="info-contacto">
                     <h5 class="items">INFORMACIÓN DE CONTACTO</h5>
                     <ul>
-                        <li><b>Teléfono:</b> {{ $postulante->telefono }}</li>
-                        <li><b>Teléfono de apoderado:</b> {{ $postulante->telefono_ap }}</li>
-                        <li><b>Correo:</b> {{ $postulante->correo }}</li>
+                        <li><b>Teléfono:</b>{{ $postulante->telefono }}</li>
+                        <li><b>Teléfono de apoderado:</b>{{ $postulante->telefono_ap }}</li>
+                        <li><b>Correo:</b>{{ $postulante->correo }}</li>
                     </ul>
                 </div>
                 <div class="info-contacto">
                     <h5 class="items">DATOS DE POSTULACIÓN</h5>
                     <ul>
-                        <li><b>Sede:</b> {{ $sede }}</li>
-                        <li><b>Modalidad:</b> {{ $modalidad }}</li>
-                        <li><b>Programa Académico:</b> {{ $programaAcademico }}</li>
-                        <li><b>N° Voucher:</b> {{ $postulante->num_voucher }}</li>
+                        <li><b>Sede:</b>{{ $sede }}</li>
+                        <li><b>Modalidad:</b>{{ $modalidad }}</li>
+                        <li><b>Programa Académico:</b>{{ $programaAcademico }}</li>
+                        <li><b>N° Voucher:</b>{{ $postulante->num_voucher }}</li>
                     </ul>
                 </div>
                 <div class="info-contacto" align="center">
@@ -273,12 +271,20 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3" class="footer" style="padding-left: 30px">
+            <td colspan="{{ $isMinor ? '2' : '3' }}" class="footer" style="padding-left: 30px">
                 <p>Lambayeque, {{ $today }}.</p>
             </td>
+
+            @if ($isMinor)
+                <td colspan="1" class="footer" align="center" style="padding-right: 60px">
+                    <hr>
+                    <p>Firma Apoderado</p>
+                </td>
+            @endif
+
             <td colspan="1" class="footer" align="center" style="padding-right: 60px">
                 <hr>
-                <p>Firma de Postulante</p>
+                <p>Firma Postulante</p>
             </td>
         </tr>
     </table>

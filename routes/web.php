@@ -1,15 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admision\VacancyDistributionController;
-use App\Http\Controllers\Admision\PdfController;
-use App\Http\Controllers\Admision\AuthController;
-use App\Http\Controllers\Admision\HomeController;
 use App\Http\Controllers\Inscripcion\FichaInscripcionController;
-use App\Http\Controllers\Admision\UserController;
 use App\Http\Controllers\Inscripcion\ApplicantController;
 use App\Http\Controllers\Admision\ProcessController;
-use App\Http\Controllers\Inscripcion\PayController;
 use App\Http\Controllers\Admision\FileTxtController;
+use App\Http\Controllers\Inscripcion\PayController;
+use App\Http\Controllers\Admision\AuthController;
+use App\Http\Controllers\Admision\HomeController;
+use App\Http\Controllers\Admision\UserController;
+use App\Http\Controllers\Admision\MailController;
+use App\Http\Controllers\Admision\PdfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get("archivos-observados", [HomeController::class, "observedPhotos"])->name('applicant-photo.observedPhotos');
 		Route::get("archivos-rectificar", [HomeController::class, "rectifyPhotos"])->name('applicant-photo.rectifyphotos');
 		Route::get("archivos-rectificados-validos", [HomeController::class, "validRectifiedPhotos"])->name('applicant-photo.validRectifiedPhotos');
+		Route::post("send-email", [MailController::class, "sendMail"])->name('mail.sendMail');
 	});
 
 	Route::group(['middleware' => 'role:admin|modify'], function () {

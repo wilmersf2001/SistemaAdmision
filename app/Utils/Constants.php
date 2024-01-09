@@ -53,11 +53,11 @@ class Constants
 
   //RUTAS DE FOTOS ADMISION
   public const RUTA_FOTO_ANTIGUA_QR = 'temp/qr-antiguo/';
-  public const CARPETA_ARCHIVOS_VALIDOS = 'archivos-validos/';
-  public const CARPETA_ARCHIVOS_OBSERVADOS = 'archivos-observados/';
-  public const CARPETA_FOTO_CARNET = 'foto-carnet/';
-  public const CARPETA_DNI_ANVERSO = 'dni-anverso/';
-  public const CARPETA_DNI_REVERSO = 'dni-reverso/';
+  public const CARPETA_ARCHIVOS_VALIDOS = 'archivos_validos/';
+  public const CARPETA_ARCHIVOS_OBSERVADOS = 'archivos_observados/';
+  public const CARPETA_FOTO_CARNET = 'foto_carnet/';
+  public const CARPETA_DNI_ANVERSO = 'dni_anverso/';
+  public const CARPETA_DNI_REVERSO = 'dni_reverso/';
 
   // MODALIDAD UNIVERSIDAD
   public const MODALIDAD_TITULADOS_TRASLADO = [4, 5];

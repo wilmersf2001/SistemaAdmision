@@ -165,7 +165,7 @@ class UpdateApplicantData extends Component
         $this->applicant->ap_paterno = trim(strtoupper($this->applicant->ap_paterno));
         $this->applicant->ap_materno = trim(strtoupper($this->applicant->ap_materno));
         $this->applicant->update($validatedData);
-        UtilFunction::saveQr($this->applicant->id);
+        UtilFunction::updateQr($this->applicant->id);
 
         return redirect()->route('home.modifyApplicant')->with('success', 'Datos del postulante actualizados correctamente');
     }

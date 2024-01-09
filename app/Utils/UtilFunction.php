@@ -38,6 +38,16 @@ class  UtilFunction
     Storage::disk(Constants::DISK_STORAGE)->put(Constants::RUTA_FOTO_QR . $filename, $qrCode);
   }
 
+  public static function updateQr($idApplicant)
+  {
+    $applicant = Postulante::find($idApplicant);
+    $hash_md5 = 'QR' . md5($applicant->num_documento);
+    $data = self::dataQr($idApplicant);
+    $qrCode = QrCode::encoding('UTF-8')->generate($data);
+    $filename = $hash_md5 . '.svg';
+    Storage::disk(Constants::DISK_STORAGE)->put(Constants::RUTA_FOTO_QR . $filename, $qrCode);
+  }
+
   public static function getImagePathByDni($dni)
   {
     $urlPhotoValid = Constants::RUTA_FOTO_CARNET_VALIDA . $dni . '.jpg';
@@ -71,7 +81,7 @@ class  UtilFunction
       $applicant->ap_paterno,
       $applicant->ap_materno,
       "DNI=" . $applicant->num_documento,
-      "ADMISION $process:{$applicant->escuela_id}",
+      "ADMISION $process:{$applicant->programa_academico_id}",
       $applicant->modalidad_id
     ]);
     return $response;

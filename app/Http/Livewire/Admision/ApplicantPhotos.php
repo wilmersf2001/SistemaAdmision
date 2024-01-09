@@ -51,6 +51,17 @@ class ApplicantPhotos extends Component
         return 0;
     }
 
+    private function searchDniAnversoByDni($dni)
+    {
+        $sourcePathDniAnverso = $this->file . Constants::CARPETA_DNI_ANVERSO;
+        $nameFile = 'A-' . $dni . '.jpg';
+        $urlPhotoValid = $sourcePathDniAnverso . $nameFile;
+        if (Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid)) {
+            return Storage::url($urlPhotoValid);
+        }
+        return 0;
+    }
+
     private function searchDniReversoByDni($dni)
     {
         $sourcePathDniReverso = $this->file . Constants::CARPETA_DNI_REVERSO;

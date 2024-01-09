@@ -29,6 +29,7 @@ class Banco extends Model
         'fecharecibo_depo',
         'monto_depo',
         'descripcion_depo',
+        'archivo_txt_id',
     ];
 
     public static function getImporteByNumDoc($numDoc)

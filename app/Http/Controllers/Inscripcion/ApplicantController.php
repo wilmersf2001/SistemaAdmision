@@ -101,7 +101,7 @@ class ApplicantController extends Controller
         ]);
 
         if ($generateQr) {
-            UtilFunction::saveQr($applicant->id);
+            UtilFunction::updateQr($applicant->id);
         }
 
         return redirect()->route('home.modifyApplicant')->with('success', 'Datos del postulante actualizados correctamente');
