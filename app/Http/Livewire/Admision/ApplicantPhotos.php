@@ -110,10 +110,11 @@ class ApplicantPhotos extends Component
         }, $dniReversoFolderFile);
 
         if ($this->currentRoute == 'archivos-validos' || $this->currentRoute == 'archivos-rectificados-validos') {
-            $fileNamesValid = array_intersect($namesProfilePhoto, $namesDniAnverso, $namesDniReverso);
-            $fileNamesValid = array_map(function ($file) {
-                return str_replace(".jpg", "", $file);
-            }, $fileNamesValid);
+            $namesProfilePhotoWithoutExtension = array_map('pathinfo', $namesProfilePhoto, array_fill(0, count($namesProfilePhoto), PATHINFO_FILENAME));
+            $namesDniAnversoWithoutExtension = array_map('pathinfo', $namesDniAnverso, array_fill(0, count($namesDniAnverso), PATHINFO_FILENAME));
+            $namesDniReversoWithoutExtension = array_map('pathinfo', $namesDniReverso, array_fill(0, count($namesDniReverso), PATHINFO_FILENAME));
+            $fileNamesValid = array_intersect($namesProfilePhotoWithoutExtension, $namesDniAnversoWithoutExtension, $namesDniReversoWithoutExtension);
+
             return $fileNamesValid;
         }
 
