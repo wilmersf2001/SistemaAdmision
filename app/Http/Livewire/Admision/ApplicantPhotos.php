@@ -91,6 +91,7 @@ class ApplicantPhotos extends Component
             }
         }
 
+
         return $listUrlPhotoAndDni;
     }
 
