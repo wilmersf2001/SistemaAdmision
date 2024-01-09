@@ -76,7 +76,7 @@ class ApplicantPhotos extends Component
     public function getApplicantDni()
     {
         $recentImageName = $this->getDniByFile($this->file);
-        $postulanteInscritoWeb = Postulante::where('estado_postulante_id', $this->fileStatus)->pluck('num_documento')->toArray();
+        $postulanteInscritoWeb = Postulante::where('estado_postulante_id', 1)->pluck('num_documento')->toArray();
         $listUrlPhotoAndDni = [];
 
         if ($recentImageName) {
