@@ -129,15 +129,28 @@
                             class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">clic
                             aquí</a>
                     </p>
+
+                    <div class="mt-2 flex items-center">
+                        <p class="text-center text-xs text-gray-500 mr-2">
+                            ¿Es usted administrador?
+                        </p>
+                        <a href="{{ route('login') }}" class="flex items-center justify-center">
+                            <div
+                                class="flex items-center justify-center w-6 h-6 bg-yellow-100 rounded-full lg:h-6 lg:w-6 shrink-0">
+                                <div class="rounded-full bg-yellow-100 text-yellow-600">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
-    <a href="{{ route('login') }}" class="flex w-full items-center">
-        <div class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 shrink-0">
-            <x-icons.user />
-        </div>
-    </a>
 
     @if (session('alert'))
         <x-alerts.error message="{{ session('alert') }}" />

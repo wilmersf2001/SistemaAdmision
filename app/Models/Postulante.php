@@ -96,7 +96,7 @@ class Postulante extends Model
 
     public function estadopostulante()
     {
-        return $this->belongsTo(Estadopostulante::class, 'estado_postulante_id');
+        return $this->belongsTo(EstadoPostulante::class, 'estado_postulante_id');
     }
 
     public function pais()
