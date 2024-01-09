@@ -227,6 +227,7 @@
                             a la verdad, me someto a las sanciones correspondientes (Art.23 del Reglamento del presente
                             Concurso de
                             Admisión).</li>
+                        <li> He culminado el 5to año de Educación Secundaria en el año 2023. </li>
                         <li>No tengo impedimento para participar en el Concurso de Admisión.</li>
                         <li>
                             De alcanzar una vacante, me comprometo a regularizar mi expediente en la fecha establecida
@@ -237,8 +238,6 @@
                             (Art.68 del
                             Reglamento del presente Concurso de Admisión).
                         </li>
-                        <li>
-                            He culminado el 5to año de Educación Secundaria en el año 2023. </li>
                     </ul>
                 </div>
             </td>
