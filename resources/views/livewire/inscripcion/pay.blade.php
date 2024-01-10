@@ -58,7 +58,7 @@
                 <label class="block mb-6">
                     <span
                         class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-900">
-                        Número de documento
+                        Número de documento de identidad (DNI o CE)
                     </span>
                     <input type="text" name="numDocument" wire:model="numDocument" minlength="8" maxlength="9"
                         oninput="validarNumeroTelefono(this)"

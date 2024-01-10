@@ -63,5 +63,6 @@ class Constants
   public const MODALIDAD_TITULADOS_TRASLADO = [4, 5];
 
   //CODIGOS DE CONCEPTO ADMISION
-  public const NUMERO_CONCEPTO_ADMISION = ['345', '489', '997', '998', '999'];
+  //public const NUMERO_CONCEPTO_ADMISION = ['345', '346', '489', '997', '998', '999'];
+  public const NUMERO_CONCEPTO_ADMISION = ['346'];
 }
