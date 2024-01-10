@@ -239,6 +239,13 @@
                             Reglamento del presente Concurso de Admisión).
                         </li>
                     </ul>
+                    <p style="font-size: 12px; padding: 0 10px;">
+                        No tengo vinculo familiar con trabajador docente y no docente de la UNPRG (Artículo 28). Caso
+                        contrario los datos de mi familiar son:
+                    </p>
+                    <br>
+                    <p style="padding: 0 10px;"">
+                        ----------------------------------------------------------------------------</p>
                 </div>
             </td>
             <td class="right-column">
