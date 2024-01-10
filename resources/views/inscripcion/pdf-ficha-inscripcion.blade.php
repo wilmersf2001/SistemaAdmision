@@ -244,7 +244,7 @@
                         contrario los datos de mi familiar son:
                     </p>
                     <br>
-                    <p style="padding: 0 10px;"">
+                    <p style="padding: 0 10px;">
                         ----------------------------------------------------------------------------</p>
                 </div>
             </td>
