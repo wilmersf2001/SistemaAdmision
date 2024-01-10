@@ -51,9 +51,16 @@ class  UtilFunction
   public static function getImagePathByDni($dni)
   {
     $urlPhotoValid = Constants::RUTA_FOTO_CARNET_VALIDA . $dni . '.jpg';
-    $dniPath = Storage::url($urlPhotoValid);
+    $urlPhotoValidAlt = Constants::RUTA_FOTO_CARNET_VALIDA . $dni . '.jpeg';
+
+    if (Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid)) {
+      $dniPath = Storage::url($urlPhotoValid);
+    } else {
+      $dniPath = Storage::url($urlPhotoValidAlt);
+    }
+
     $applicantStatus = Postulante::where('num_documento', $dni)->value('estado_postulante_id');
-    if (in_array($applicantStatus, Constants::ESTADOS_VALIDOS_POSTULANTE) && Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid)) {
+    if (in_array($applicantStatus, Constants::ESTADOS_VALIDOS_POSTULANTE) && (Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid)) || Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValidAlt)) {
       return $dniPath;
     }
     return 0;
@@ -62,12 +69,17 @@ class  UtilFunction
   public static function photoCarnetExists($dni)
   {
     $urlPhotoValid = Constants::RUTA_FOTO_CARNET_VALIDA . $dni . '.jpg';
-    $urlDniAnversoValid = Constants::RUTA_DNI_ANVERSO_VALIDA . 'A-' . $dni . '.jpg';
-    $urlDniReversoValid = Constants::RUTA_DNI_REVERSO_VALIDA . 'R-' . $dni . '.jpg';
+    $urlPhotoValidAlt = Constants::RUTA_FOTO_CARNET_VALIDA . $dni . '.jpeg';
 
-    $existsPhoto = Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid);
-    $existsAnverso = Storage::disk(Constants::DISK_STORAGE)->exists($urlDniAnversoValid);
-    $existsReverso = Storage::disk(Constants::DISK_STORAGE)->exists($urlDniReversoValid);
+    $urlDniAnversoValid = Constants::RUTA_DNI_ANVERSO_VALIDA . 'A-' . $dni . '.jpg';
+    $urlDniAnversoValidAlt = Constants::RUTA_DNI_ANVERSO_VALIDA . 'A-' . $dni . '.jpeg';
+
+    $urlDniReversoValid = Constants::RUTA_DNI_REVERSO_VALIDA . 'R-' . $dni . '.jpg';
+    $urlDniReversoValidAlt = Constants::RUTA_DNI_REVERSO_VALIDA . 'R-' . $dni . '.jpeg';
+
+    $existsPhoto = Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid) || Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValidAlt);
+    $existsAnverso = Storage::disk(Constants::DISK_STORAGE)->exists($urlDniAnversoValid) || Storage::disk(Constants::DISK_STORAGE)->exists($urlDniAnversoValidAlt);
+    $existsReverso = Storage::disk(Constants::DISK_STORAGE)->exists($urlDniReversoValid) || Storage::disk(Constants::DISK_STORAGE)->exists($urlDniReversoValidAlt);
 
     return ($existsPhoto && $existsAnverso && $existsReverso);
   }

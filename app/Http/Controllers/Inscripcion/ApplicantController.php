@@ -17,7 +17,7 @@ class ApplicantController extends Controller
     private function uploadImage($file, string $name, string $destination)
     {
         if ($file) {
-            $filename = $name . '.' . $file->getClientOriginalExtension();
+            $filename = $name . '.jpg';
             Storage::disk(Constants::DISK_STORAGE)->put($destination . $filename, file_get_contents($file));
         }
     }
