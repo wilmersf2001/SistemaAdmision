@@ -45,6 +45,6 @@ class PdfController extends Controller
             'isMinor' => $isMinor,
         ];
 
-        return PDF::loadView('admision.postulante.pdf', $data)->stream();
+        return PDF::loadView('inscripcion.pdf-ficha-inscripcion', $data)->stream();
     }
 }
