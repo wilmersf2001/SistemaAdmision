@@ -72,16 +72,34 @@
                             <td
                                 class="flex justify-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
                                 @if ($user->getRoleNames()->implode('') === 'admin')
-                                    <x-icons.lock />
+                                    <div class="mr-4"><x-icons.lock /></div>
+                                    <span class="sm:block mr-3">
+                                        <div class="relative">
+                                            <button type="button" wire:click="openModal(4,{{ $user }})"
+                                                class="popover-trigger font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                <x-icons.pencil flag="0" />
+                                            </button>
+                                            <x-tooltip name="editar" class="popover-hover" />
+                                        </div>
+                                    </span>
                                 @else
                                     <div class="flex justify-center">
                                         <span class="sm:block mr-6">
                                             <div class="relative">
                                                 <button type="button" wire:click="openModal(2,{{ $user }})"
-                                                    class="popover-trigger font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                    class="popover-trigger font-medium text-yellow-600 dark:text-blue-500 hover:underline">
                                                     <x-icons.key />
                                                 </button>
                                                 <x-tooltip name="permisos" class="popover-hover" />
+                                            </div>
+                                        </span>
+                                        <span class="sm:block mr-3">
+                                            <div class="relative">
+                                                <button type="button" wire:click="openModal(4,{{ $user }})"
+                                                    class="popover-trigger font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                    <x-icons.pencil flag="0" />
+                                                </button>
+                                                <x-tooltip name="editar" class="popover-hover" />
                                             </div>
                                         </span>
                                         <span class="sm:ml-3">
@@ -116,6 +134,8 @@
         @livewire('admision.user.permission', ['user' => $modalSelectedUser])
     @elseif($showModal && $action == 3)
         @livewire('admision.user.delete', ['user' => $modalSelectedUser])
+    @elseif($showModal && $action == 4)
+        @livewire('admision.user.update', ['user' => $modalSelectedUser])
     @endif
 
     @if (session('success'))

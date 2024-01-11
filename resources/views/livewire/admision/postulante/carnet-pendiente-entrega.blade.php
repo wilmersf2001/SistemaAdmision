@@ -1,11 +1,11 @@
 <div class="animate-fade-in">
-    <div class="flex justify-end">
-        <button wire:click="openAlert"
-            class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-4">
-            Actualización Total
-        </button>
-    </div>
     @if ($postulantes->total() > 0)
+        <div class="flex justify-end">
+            <button wire:click="openAlert"
+                class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-4">
+                Actualización Total
+            </button>
+        </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -67,7 +67,7 @@
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <button wire:click="updateStatePostulante({{ $postulante }})"
                                     class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-4">
-                                    pendiente entrega
+                                    Pendiente entrega
                                 </button>
                             </td>
                         </tr>
@@ -80,14 +80,14 @@
         </div>
     @else
         <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 mt-8" role="alert">
-            <span class="font-medium">No se encontraron registros de usuarios</span>
+            <span class="font-medium">No se encontraron registros de postulantes</span>
         </div>
     @endif
 
     @if ($showAlert)
         <x-modals.warning color="blue">
             <x-slot name="title">¿Seguro que desea actualizar el estado de todos los postulantes?</x-slot>
-            <x-slot name="content"> Pasará a un estado de carnet entregado. </x-slot>
+            <x-slot name="content"> Pasará a un estado de <strong>Pendiente de Entrega</strong>. </x-slot>
             <x-slot name="button">
                 <div class="flex justify-center">
                     <span class="sm:ml-3">

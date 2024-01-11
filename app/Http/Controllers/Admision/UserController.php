@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admision;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,23 @@ class UserController extends Controller
             'password' => Hash::make($request->input('password')),
         ]);
         return redirect()->route('home.user')->with('success', 'Creación de usuario exitosa');
+    }
+
+    public function update(UpdateUserRequest $request, User $user)
+    {
+        if ($request->usuario != $user->usuario) {
+            $request->validate([
+                'usuario' => 'required|min:3|unique:tb_usuario,usuario',
+            ]);
+        }
+
+        $user->update([
+            'nombre' => trim(strtoupper($request->nombre)),
+            'apellido' => trim(strtoupper($request->apellido)),
+            'usuario' => trim($request->usuario),
+            'password' => Hash::make($request->input('password')),
+        ]);
+        return redirect()->route('home.user')->with('success', 'Actualización de usuario exitosa');
     }
 
     public function destroy(User $user)

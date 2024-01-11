@@ -98,9 +98,24 @@ class HomeController extends Controller
         return view('admision.postulante.carnet-entregado');
     }
 
+    public function huellaDigital()
+    {
+        return view('admision.postulante.huella-digital');
+    }
+
     public function modifyApoderado()
     {
         return view('admision.postulante.modify-apoderado');
+    }
+
+    public function reportePagos()
+    {
+        return view('admision.reports.pagos');
+    }
+
+    public function reporteInscritos()
+    {
+        return view('admision.reports.inscritos');
     }
 
     public function restricted()

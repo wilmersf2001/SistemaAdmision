@@ -20,7 +20,7 @@ class Users extends Component
 
     public function openModal($selectedAction, User $user = null)
     {
-        if ($selectedAction >= 1 && $selectedAction <= 3) {
+        if ($selectedAction >= 1 && $selectedAction <= 4) {
             $this->action = $selectedAction;
             if ($selectedAction != 1) {
                 $this->modalSelectedUser = $user;

@@ -22,7 +22,7 @@
                         <div class="mt-2">
                             <p class="text-sm text-gray-500">Por favor se le comunica subir <b
                                     class="text-red-500">OTRO</b>
-                                archivo en formato JPG o JPEG |
+                                archivo en formato JPG |
                                 <b class="text-red-500">NO SUBIR EL MISMO ARCHIVO OBSERVADO</b>
                             </p>
                         </div>

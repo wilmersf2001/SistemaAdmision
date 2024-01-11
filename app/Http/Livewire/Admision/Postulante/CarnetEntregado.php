@@ -12,7 +12,7 @@ class CarnetEntregado extends Component
 
     public function render()
     {
-        $postulantes = Postulante::where('estado_postulante_id', Constants::ESTADO_CARNET_IMPRESO_PENDIENTE)->paginate(10);
+        $postulantes = Postulante::where('estado_postulante_id', Constants::ESTADO_HUELLA_DIGITAL)->paginate(10);
         return view('livewire.admision.postulante.carnet-entregado', compact('postulantes'));
     }
 
@@ -29,7 +29,7 @@ class CarnetEntregado extends Component
 
     public function updateStateTotalPostulante()
     {
-        Postulante::where('estado_postulante_id', Constants::ESTADO_CARNET_IMPRESO_PENDIENTE)->update(['estado_postulante_id' => Constants::ESTADO_CARNET_ENTREGADO]);
+        Postulante::where('estado_postulante_id', Constants::ESTADO_HUELLA_DIGITAL)->update(['estado_postulante_id' => Constants::ESTADO_CARNET_ENTREGADO]);
         $this->showAlert = !$this->showAlert;
     }
 }

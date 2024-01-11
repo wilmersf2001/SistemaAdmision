@@ -15,6 +15,8 @@
 <body>
     @php
         $processNumber = \App\Models\Proceso::getProcessNumber();
+        $nombreLogeado = \Illuminate\Support\Facades\Auth::user()->nombre;
+        $apellidosLogeado = \Illuminate\Support\Facades\Auth::user()->apellido;
     @endphp
     <div>
         <nav class="fixed top-0 z-50 w-full bg-gray-800 border-b border-gray-200">
@@ -42,7 +44,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center ms-3">
+                    <div class="flex items-center">
+                        <p class="text-yellow-400 mr-4 text-sm font-semibold">{{ $nombreLogeado }}
+                            {{ $apellidosLogeado }}
+                        </p>
                         <div>
                             <div class="lg:flex lg:flex-1 lg:justify-end">
                                 <form action="{{ route('auth.logout') }}" method="POST">
@@ -143,6 +148,11 @@
                                             Pendiente entrega</a>
                                     </li>
                                     <li>
+                                        <a href={{ route('home.huellaDigital') }}
+                                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Huella
+                                            digital</a>
+                                    </li>
+                                    <li>
                                         <a href={{ route('home.carnetEntregado') }}
                                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
                                             Entregado</a>
@@ -202,6 +212,29 @@
                                     <a href={{ route('home.uploadedFiles') }}
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Archivos
                                         subidos</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
+                    @can('usuarios')
+                        <li>
+                            <button type="button"
+                                class="flex items-center w-full px-3 py-2 text-base text-gray-900 transition rounded-lg group hover:bg-gray-100"
+                                aria-controls="dropdown-reportes" data-collapse-toggle="dropdown-reportes">
+                                <x-icons.doc />
+                                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-normal truncate">
+                                    Reportes
+                                </span>
+                                <x-icons.chevron-down />
+                            </button>
+                            <ul id="dropdown-reportes" class="hidden py-2 space-y-2 font-normal">
+                                <li>
+                                    <a href={{ route('home.reportePagos') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Pagos</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('home.reporteInscritos') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Inscritos</a>
                                 </li>
                             </ul>
                         </li>

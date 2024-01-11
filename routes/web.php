@@ -62,13 +62,18 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get("usuarios", [HomeController::class, "user"])->name('home.user');
 		Route::get("carnet-pendiente-entrega", [HomeController::class, "carnetPendienteEntrega"])->name('home.carnetPendienteEntrega');
 		Route::get("carnet-entregado", [HomeController::class, "carnetEntregado"])->name('home.carnetEntregado');
+		Route::get("huella-digital", [HomeController::class, "huellaDigital"])->name('home.huellaDigital');
 		Route::post('user-store', [UserController::class, 'store'])->name('user.store');
 		Route::put("user-assign-permission/{user}", [UserController::class, "assignPermission"])->name('user.assignPermission');
+		Route::put('user-update/{user}', [UserController::class, 'update'])->name('user.update');
 		Route::delete("user-destroy/{user}", [UserController::class, "destroy"])->name('user.destroy');
 		Route::get("apertura-proceso", [HomeController::class, "processOpening"])->name('home.processOpening');
 		Route::post("open-process", [ProcessController::class, "store"])->name('process.store');
 		Route::put("update-process/{process}", [ProcessController::class, "update"])->name('process.update');
 		Route::delete("process-destroy/{process}", [ProcessController::class, "destroy"])->name('process.destroy');
+		//REPORTES
+		Route::get("reporte-pagos", [HomeController::class, "reportePagos"])->name('home.reportePagos');
+		Route::get("reporte-inscritos", [HomeController::class, "reporteInscritos"])->name('home.reporteInscritos');
 		//RUTAS DISTRIBUTION VACANTES
 		Route::get("asignar-vacantes", [HomeController::class, "assignVacancies"])->name('home.assignVacancies');
 		Route::get("distribucion-vacantes", [HomeController::class, "vacancyDistribution"])->name('home.vacancyDistribution');
