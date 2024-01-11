@@ -92,7 +92,7 @@ class ApplicantController extends Controller
             'correo' => $request->correo,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'telefono' => $request->telefono,
-            'direccion' => $request->direccion,
+            'direccion' => trim(strtoupper($request->direccion)),
             'telefono_ap' => $request->telefono_ap,
             'distrito_nac_id' => $request->distrito_n,
             'distrito_res_id' => $request->distrito_r,

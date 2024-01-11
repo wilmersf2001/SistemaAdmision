@@ -9,14 +9,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public $process;
-
     public function __invoke()
     {
-        $processNumber = '2024-I';/* $this->process->getProcessNumber(); */
         $fullName = Auth::user()->nombre;
         $firstName = explode(' ', $fullName)[0];
-        return view('admision.home', compact('firstName', 'processNumber'));
+        return view('admision.home', compact('firstName'));
     }
 
     private function getPhotoViewData($file, $status)
@@ -70,6 +67,7 @@ class HomeController extends Controller
     {
         return view('admision.payments.upload-txt-file');
     }
+
     public function uploadedFiles()
     {
         return view('admision.payments.uploaded-files');
@@ -89,6 +87,17 @@ class HomeController extends Controller
     {
         return view('admision.vacancy-distribution.vacancy-distribution');
     }
+
+    public function carnetPendienteEntrega()
+    {
+        return view('admision.postulante.carnet-pendiente-entrega');
+    }
+
+    public function CarnetEntregado()
+    {
+        return view('admision.postulante.carnet-entregado');
+    }
+
     public function restricted()
     {
         $fullName = Auth::user()->nombre;

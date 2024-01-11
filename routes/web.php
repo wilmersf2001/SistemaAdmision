@@ -51,6 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['middleware' => 'role:admin|modify'], function () {
 		Route::get("modificar-postulante", [HomeController::class, "modifyApplicant"])->name('home.modifyApplicant');
+		Route::get("carnet-pendiente-entrega", [HomeController::class, "carnetPendienteEntrega"])->name('home.carnetPendienteEntrega');
+		Route::get("carnet-entregado", [HomeController::class, "carnetEntregado"])->name('home.carnetEntregado');
 		Route::get("ficha-postulante", [HomeController::class, "inscriptionComprobant"])->name('home.inscriptionComprobant');
 		Route::put("update-applicant/{applicant}", [ApplicantController::class, "update"])->name('applicant.update');
 		Route::get("ficha-inscripcion/{dni}", [PdfController::class, "pdfData"])->name('pdf.pdfData');

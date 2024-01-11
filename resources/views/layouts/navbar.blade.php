@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href={{ asset('\imgs\favicon.ico') }}>
+    <link rel="icon" type="image/x-icon" href={{ asset('\images\favicon.ico') }}>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <title>@yield('title')</title>
 
@@ -16,7 +16,7 @@
     @php
         $processNumber = \App\Models\Proceso::getProcessNumber();
     @endphp
-    <div>{{-- max-w-7xl --}}
+    <div>
         <nav class="fixed top-0 z-50 w-full bg-gray-800 border-b border-gray-200">
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
@@ -113,11 +113,35 @@
                     @endcan
                     @can('modificar-postulante')
                         <li>
-                            <a href={{ route('home.modifyApplicant') }}
-                                class="flex font-medium items-center px-3 py-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
-                                <x-icons.pencil flag='0' size='5' />
-                                <span class="flex-1 ms-3 whitespace-nowrap font-normal">Modificar</span>
-                            </a>
+                            <button type="button"
+                                class="flex items-center w-full px-3 py-2 text-base text-gray-900 transition rounded-lg group hover:bg-gray-100"
+                                aria-controls="dropdown-postulante" data-collapse-toggle="dropdown-postulante">
+                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                </svg>
+                                <span
+                                    class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-normal">Postulante</span>
+                                <x-icons.chevron-down />
+                            </button>
+                            <ul id="dropdown-postulante" class="hidden py-2 space-y-2 font-normal">
+                                <li>
+                                    <a href={{ route('home.modifyApplicant') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Modificar
+                                        datos</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('home.carnetPendienteEntrega') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
+                                        Pendiente entrega</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('home.carnetEntregado') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
+                                        Entregado</a>
+                                </li>
+                            </ul>
                         </li>
                     @endcan
                     @can('visualizar-constancias')
@@ -228,25 +252,27 @@
                 </div>
             </div>
         </div>
+        {{-- <footer class="bg-white shadow absolute bottom-0 z-50 w-full">
+            <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+                <span class="text-sm text-gray-500 sm:text-center">© {{ date('Y') }} <a
+                        href="http://www.unprg.edu.pe/univ/portal/index.php" class="hover:underline">UNPRG</a>.
+                    Todos
+                    los
+                    derechos
+                    reservados - Oficina de Tecnología de la Información.
+                </span>
+                <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 sm:mt-0">
+                    <li>
+                        <a href="http://www.unprg.edu.pe/univ/portal/index.php" target="_blank"
+                            class="mr-4 hover:underline md:mr-6 ">Universidad
+                            Nacional Pedro Ruiz Gallo</a>
+                    </li>
+                </ul>
+            </div>
+        </footer> --}}
     </div>
 
 
-    {{-- <footer class="bg-white shadow w-full z-50" style="position: absolute; bottom:0">
-        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a
-                    href="http://www.unprg.edu.pe/univ/portal/index.php" class="hover:underline">UNPRG</a>. Todos los
-                derechos
-                reservados - Oficina de Tecnología de la Información.
-            </span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-                <li>
-                    <a href="http://www.unprg.edu.pe/univ/portal/index.php" target="_blank"
-                        class="mr-4 hover:underline md:mr-6 ">Universidad
-                        Nacional Pedro Ruiz Gallo</a>
-                </li>
-            </ul>
-        </div>
-    </footer> --}}
     @livewireScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
 </body>

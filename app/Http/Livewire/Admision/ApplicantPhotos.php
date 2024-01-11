@@ -91,7 +91,6 @@ class ApplicantPhotos extends Component
             }
         }
 
-
         return $listUrlPhotoAndDni;
     }
 
@@ -100,6 +99,11 @@ class ApplicantPhotos extends Component
         $profilePhotoFolderFile = Storage::files('public/' . $file . Constants::CARPETA_FOTO_CARNET);
         $dniAnversoFolderFile = Storage::files('public/' . $file . Constants::CARPETA_DNI_ANVERSO);
         $dniReversoFolderFile = Storage::files('public/' . $file . Constants::CARPETA_DNI_REVERSO);
+
+        if (!empty($profilePhotoFolderFile)) {
+            $ultimoArchivo = end($profilePhotoFolderFile);
+            $this->latestDate = Storage::lastModified($ultimoArchivo);
+        }
 
         $namesProfilePhoto = array_map('basename', $profilePhotoFolderFile);
         $namesDniAnverso = array_map(function ($file) {

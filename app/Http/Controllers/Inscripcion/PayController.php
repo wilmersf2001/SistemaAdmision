@@ -50,7 +50,7 @@ class PayController extends Controller
       ->first();
 
     if (!$bank) {
-      return $this->redirectToStartWithAlert('Pago no encontrado, por favor verifique que los datos esten correctamentes ingresados');
+      return $this->redirectToStartWithAlert('Pago no encontrado o pago esta siendo procesado, por favor verifique que los datos esten correctamentes ingresados o vuelva a intentarlo en unos minutos (Recuerde esperar 24 horas para que su pago sea procesado)');
     }
 
     if ($bank->estado == 1) {
