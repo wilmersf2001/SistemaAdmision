@@ -98,6 +98,11 @@ class HomeController extends Controller
         return view('admision.postulante.carnet-entregado');
     }
 
+    public function modifyApoderado()
+    {
+        return view('admision.postulante.modify-apoderado');
+    }
+
     public function restricted()
     {
         $fullName = Auth::user()->nombre;

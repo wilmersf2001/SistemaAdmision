@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inscripcion;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApplicantRequest;
 use App\Http\Requests\UpdateApplicantRequest;
+use App\Http\Requests\UpdateApoderadoRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Utils\UtilFunction;
 use App\Models\Postulante;
@@ -105,5 +106,17 @@ class ApplicantController extends Controller
         }
 
         return redirect()->route('home.modifyApplicant')->with('success', 'Datos del postulante actualizados correctamente');
+    }
+
+    public function updateApoderado(UpdateApoderadoRequest $request, Postulante $applicant)
+    {
+        $applicant->update([
+            'num_documento_apoderado' => $request->num_documento_apoderado,
+            'nombres_apoderado' => trim(strtoupper($request->nombres_apoderado)),
+            'ap_paterno_apoderado' => trim(strtoupper($request->ap_paterno_apoderado)),
+            'ap_materno_apoderado' => trim(strtoupper($request->ap_materno_apoderado)),
+        ]);
+
+        return redirect()->route('home.modifyApoderado')->with('success', 'Datos del apoderado actualizados correctamente');
     }
 }

@@ -51,15 +51,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['middleware' => 'role:admin|modify'], function () {
 		Route::get("modificar-postulante", [HomeController::class, "modifyApplicant"])->name('home.modifyApplicant');
-		Route::get("carnet-pendiente-entrega", [HomeController::class, "carnetPendienteEntrega"])->name('home.carnetPendienteEntrega');
-		Route::get("carnet-entregado", [HomeController::class, "carnetEntregado"])->name('home.carnetEntregado');
+		Route::get("modificar-apoderado", [HomeController::class, "modifyApoderado"])->name('home.modifyApoderado');
 		Route::get("ficha-postulante", [HomeController::class, "inscriptionComprobant"])->name('home.inscriptionComprobant');
 		Route::put("update-applicant/{applicant}", [ApplicantController::class, "update"])->name('applicant.update');
+		Route::put("update-apoderado/{applicant}", [ApplicantController::class, "updateApoderado"])->name('applicant.updateApoderado');
 		Route::get("ficha-inscripcion/{dni}", [PdfController::class, "pdfData"])->name('pdf.pdfData');
 	});
 
 	Route::group(['middleware' => 'role:admin'], function () {
 		Route::get("usuarios", [HomeController::class, "user"])->name('home.user');
+		Route::get("carnet-pendiente-entrega", [HomeController::class, "carnetPendienteEntrega"])->name('home.carnetPendienteEntrega');
+		Route::get("carnet-entregado", [HomeController::class, "carnetEntregado"])->name('home.carnetEntregado');
 		Route::post('user-store', [UserController::class, 'store'])->name('user.store');
 		Route::put("user-assign-permission/{user}", [UserController::class, "assignPermission"])->name('user.assignPermission');
 		Route::delete("user-destroy/{user}", [UserController::class, "destroy"])->name('user.destroy');

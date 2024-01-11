@@ -132,15 +132,22 @@
                                         datos</a>
                                 </li>
                                 <li>
-                                    <a href={{ route('home.carnetPendienteEntrega') }}
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
-                                        Pendiente entrega</a>
+                                    <a href={{ route('home.modifyApoderado') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Actualizar
+                                        Apoderado</a>
                                 </li>
-                                <li>
-                                    <a href={{ route('home.carnetEntregado') }}
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
-                                        Entregado</a>
-                                </li>
+                                @can('usuarios')
+                                    <li>
+                                        <a href={{ route('home.carnetPendienteEntrega') }}
+                                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
+                                            Pendiente entrega</a>
+                                    </li>
+                                    <li>
+                                        <a href={{ route('home.carnetEntregado') }}
+                                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
+                                            Entregado</a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
