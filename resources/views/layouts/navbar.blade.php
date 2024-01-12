@@ -161,6 +161,40 @@
                             </ul>
                         </li>
                     @endcan
+                    @can('usuarios')
+                        <li>
+                            <button type="button"
+                                class="flex items-center w-full px-3 py-2 text-base text-gray-900 transition rounded-lg group hover:bg-gray-100"
+                                aria-controls="dropdown-estado" data-collapse-toggle="dropdown-estado">
+                                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                </svg>
+                                <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap font-normal">Actualizar
+                                    Estados</span>
+                                <x-icons.chevron-down />
+                            </button>
+                            <ul id="dropdown-estado" class="hidden py-2 space-y-2 font-normal">
+
+                                <li>
+                                    <a href={{ route('home.carnetPendienteEntrega') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">
+                                        Valido <span>&rarr;</span> Impreso</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('home.huellaDigital') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">
+                                        Impreso <span>&rarr;</span> H. Digital</a>
+                                </li>
+                                <li>
+                                    <a href={{ route('home.carnetEntregado') }}
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">H.
+                                        Digital <span>&rarr;</span> Entregado</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endcan
                     @can('visualizar-constancias')
                         <li>
                             <a href={{ route('home.inscriptionComprobant') }}
