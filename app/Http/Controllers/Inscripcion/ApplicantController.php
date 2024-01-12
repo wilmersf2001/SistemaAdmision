@@ -22,13 +22,14 @@ class ApplicantController extends Controller
             Storage::disk(Constants::DISK_STORAGE)->put($destination . $filename, file_get_contents($file));
         }
     }
+
     public function store(StoreApplicantRequest $request)
     {
         $banco = Banco::find($request->banco_id);
         $postulante = Postulante::where('num_documento', $request->num_documento)->first();
 
-        if ($postulante) {
-            return redirect()->route('start')->with('alert', 'El número de documento ya se encuentra registrado');
+        if ($postulante && $postulante->estado_postulante_id != Constants::ESTADO_INSCRIPCION_ANULADA) {
+            return redirect()->route('start')->with('alert', 'El postulante ya se encuentra registrado en el proceso de admisión');
         }
 
         if (!$banco) {
