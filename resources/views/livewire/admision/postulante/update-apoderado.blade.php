@@ -97,19 +97,19 @@
                         @if ($errors->any())
                             <button type="button" disabled
                                 class="inline-flex w-full justify-center rounded-md bg-indigo-400 px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">Modificar
-                                Postulante</button>
+                                Apoderado</button>
                         @else
                             <button type="submit"
                                 class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto">Modificar
-                                Postulante</button>
+                                Apoderado</button>
                         @endif
                     </div>
                 </form>
             @else
                 <div class="p-4 my-6 text-sm text-blue-800 rounded-lg bg-blue-50" role="alert">
-                    <span class="font-medium">Inicie la búsqueda!</span> para modificar datos de postulante digite
+                    <span class="font-medium">Inicie la búsqueda!</span> para modificar datos de Apoderado digite
                     el
-                    DNI en el buscador.
+                    DNI del postulante en el buscador.
                 </div>
             @endif
         </div>

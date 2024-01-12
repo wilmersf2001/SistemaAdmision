@@ -62,7 +62,7 @@ class Applicant extends Component
   public $numberProcess = 0;
   public $isAgeMinor = false;
   public $disableInputApplicant = 0;
-  public $disableInputApoderado;
+  public $disableInputApoderado = 0;
   protected $messages = ValidateApplicant::MESSAGES_ERROR;
 
   protected function rules()

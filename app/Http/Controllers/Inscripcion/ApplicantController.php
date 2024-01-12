@@ -25,8 +25,14 @@ class ApplicantController extends Controller
     public function store(StoreApplicantRequest $request)
     {
         $banco = Banco::find($request->banco_id);
+        $postulante = Postulante::where('num_documento', $request->num_documento)->first();
+
+        if ($postulante) {
+            return redirect()->route('start')->with('alert', 'El número de documento ya se encuentra registrado');
+        }
+
         if (!$banco) {
-            return response()->json(['error' => 'Banco no encontrado'], 404);
+            return redirect()->route('start')->with('alert', 'El número de voucher no se encuentra registrado');
         }
 
         $banco->update([
@@ -43,9 +49,9 @@ class ApplicantController extends Controller
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'sexo_id' => $request->sexo_id,
             'num_documento_apoderado' => $request->filled('num_documento_apoderado') ? $request->num_documento_apoderado : null,
-            'nombres_apoderado' => trim(strtoupper($request->filled('nombres_apoderado'))) ? $request->nombres_apoderado : null,
-            'ap_paterno_apoderado' => trim(strtoupper($request->filled('ap_paterno_apoderado'))) ? $request->ap_paterno_apoderado : null,
-            'ap_materno_apoderado' => trim(strtoupper($request->filled('ap_materno_apoderado'))) ? $request->ap_materno_apoderado : null,
+            'nombres_apoderado' => $request->filled('nombres_apoderado') ? trim(strtoupper($request->nombres_apoderado)) : null,
+            'ap_paterno_apoderado' => $request->filled('ap_paterno_apoderado') ? trim(strtoupper($request->ap_paterno_apoderado)) : null,
+            'ap_materno_apoderado' => $request->filled('ap_materno_apoderado') ? trim(strtoupper($request->ap_materno_apoderado)) : null,
             'distrito_nac_id' => $request->distrito_nac,
             'distrito_res_id' => $request->distrito_res,
             'tipo_direccion_id' => $request->tipo_direccion,
