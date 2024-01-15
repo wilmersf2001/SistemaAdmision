@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <p class="text-yellow-400 mr-4 text-sm font-semibold">{{ $nombreLogeado }}
+                        <p class="text-white mr-4 text-sm font-semibold">{{ $nombreLogeado }}
                             {{ $apellidosLogeado }}
                         </p>
                         <div>
@@ -141,23 +141,6 @@
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Actualizar
                                         Apoderado</a>
                                 </li>
-                                @can('usuarios')
-                                    <li>
-                                        <a href={{ route('home.carnetPendienteEntrega') }}
-                                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
-                                            Pendiente entrega</a>
-                                    </li>
-                                    <li>
-                                        <a href={{ route('home.huellaDigital') }}
-                                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">Huella
-                                            digital</a>
-                                    </li>
-                                    <li>
-                                        <a href={{ route('home.carnetEntregado') }}
-                                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100">C.
-                                            Entregado</a>
-                                    </li>
-                                @endcan
                             </ul>
                         </li>
                     @endcan
@@ -250,7 +233,7 @@
                             </ul>
                         </li>
                     @endcan
-                    {{-- @can('usuarios')
+                    @can('usuarios')
                         <li>
                             <button type="button"
                                 class="flex items-center w-full px-3 py-2 text-base text-gray-900 transition rounded-lg group hover:bg-gray-100"
@@ -272,7 +255,7 @@
                                 </li>
                             </ul>
                         </li>
-                    @endcan --}}
+                    @endcan
                     @can('usuarios')
                         <li>
                             <button type="button"

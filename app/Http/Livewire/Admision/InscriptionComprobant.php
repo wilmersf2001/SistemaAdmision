@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Postulante;
 use App\Utils\Constants;
 use App\Http\Requests\View\Message\SearchInscriptionComprobant;
+use Illuminate\Support\Facades\Auth;
 
 class InscriptionComprobant extends Component
 {
@@ -26,7 +27,8 @@ class InscriptionComprobant extends Component
 
     public function render()
     {
-        return view('livewire.admision.inscription-comprobant');
+        $user = Auth::user();
+        return view('livewire.admision.inscription-comprobant', compact('user'));
     }
 
     public function searchByDni()

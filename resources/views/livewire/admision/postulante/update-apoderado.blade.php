@@ -8,7 +8,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <x-icons.search />
                 </div>
-                <input type="text" wire:model="searchByApplicantDni" oninput="validarNumeroTelefono(this)"
+                <input type="text" wire:model="searchByApplicantDni" oninput="singleNumbers(this)"
                     class="w-full pl-10 mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"
                     placeholder="759841..">
             </div>
@@ -57,8 +57,7 @@
                                 Número de documento de Apoderado
                             </span>
                             <input type="text" wire:model="applicant.num_documento_apoderado" minlength="8"
-                                maxlength="9" name="num_documento_apoderado" oninput="validarNumeroTelefono(this)"
-                                required
+                                maxlength="9" name="num_documento_apoderado" oninput="singleNumbers(this)" required
                                 class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
                             <x-input-error for="applicant.num_documento_apoderado" />
                         </label>

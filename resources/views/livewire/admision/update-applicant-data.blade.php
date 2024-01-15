@@ -8,7 +8,7 @@
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <x-icons.search />
                 </div>
-                <input type="text" wire:model="searchByApplicantDni" oninput="validarNumeroTelefono(this)"
+                <input type="text" wire:model="searchByApplicantDni" oninput="singleNumbers(this)"
                     class="w-full pl-10 mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1"
                     placeholder="759841..">
             </div>
@@ -274,7 +274,7 @@
                                 Teléfono
                             </span>
                             <input type="tel" name="telefono" wire:model="applicant.telefono" maxlength="9"
-                                oninput="validarNumeroTelefono(this)" required
+                                oninput="singleNumbers(this)" required
                                 class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
                             @if (session()->has('telefono'))
                                 <p class="text-xs text-red-600">Solo acepta caracteres numéricos</p>
@@ -337,7 +337,7 @@
                                 Teléfono Apoderado
                             </span>
                             <input type="tel" name="telefono_ap" wire:model="applicant.telefono_ap"
-                                maxlength="9" oninput="validarNumeroTelefono(this)" required
+                                maxlength="9" oninput="singleNumbers(this)" required
                                 class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
                             @if (session()->has('telefonoAp'))
                                 <p class="text-xs text-red-600">Solo acepta caracteres numéricos</p>

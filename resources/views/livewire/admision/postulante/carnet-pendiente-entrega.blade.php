@@ -67,7 +67,7 @@
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <button wire:click="updateStatePostulante({{ $postulante }})"
                                     class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mx-4">
-                                    Pendiente entrega
+                                    carnet impreso
                                 </button>
                             </td>
                         </tr>

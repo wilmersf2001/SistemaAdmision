@@ -61,7 +61,7 @@
                         Número de documento de identidad (DNI o CE)
                     </span>
                     <input type="text" name="numDocument" wire:model="numDocument" minlength="8" maxlength="9"
-                        oninput="validarNumeroTelefono(this)"
+                        oninput="singleNumbers(this)"
                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         placeholder="Ejem: 75635..." />
                     <x-input.error for="numDocument" />
@@ -72,7 +72,7 @@
                         Número de voucher
                     </span>
                     <input type="text" name="voucherNumber" wire:model="voucherNumber" minlength="7" maxlength="7"
-                        oninput="validarNumeroTelefono(this)"
+                        oninput="singleNumbers(this)"
                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         placeholder="Ejem: 1742..." />
                     <x-input.error for="voucherNumber" />
@@ -86,7 +86,7 @@
                         Número de agencia
                     </span>
                     <input type="text" name="agencyNumber" wire:model="agencyNumber" minlength="4" maxlength="4"
-                        oninput="validarNumeroTelefono(this)"
+                        oninput="singleNumbers(this)"
                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
                         placeholder="Ejem: 0230" />
                     <x-input.error for="agencyNumber" />

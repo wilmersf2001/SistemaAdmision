@@ -258,7 +258,7 @@
                             Teléfono del Postulante
                         </span>
                         <input type="tel" name="telefono" maxlength='9' placeholder="Ejem: 955123456"
-                            wire:model="applicant.telefono" oninput="validarNumeroTelefono(this)"
+                            wire:model="applicant.telefono" oninput="singleNumbers(this)"
                             class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
                         <x-input.error for="applicant.telefono" />
                     </label>
@@ -269,7 +269,7 @@
                             Teléfono del Apoderado
                         </span>
                         <input type="tel" name="telefono_ap" maxlength='9' placeholder="Ejem: 955123456"
-                            wire:model="applicant.telefono_ap" oninput="validarNumeroTelefono(this)"
+                            wire:model="applicant.telefono_ap" oninput="singleNumbers(this)"
                             class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" />
                         <x-input.error for="applicant.telefono_ap" />
                     </label>
