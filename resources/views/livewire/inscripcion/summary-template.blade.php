@@ -15,15 +15,15 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Nombres</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($applicant->nombres) }}</dd>
+                            {{ Str::upper($applicant->nombres) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Apellidos</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($applicant->ap_paterno) }}
-                            {{ strtoupper($applicant->ap_materno) }}
+                            {{ Str::upper($applicant->ap_paterno) }}
+                            {{ Str::upper($applicant->ap_materno) }}
                         </dd>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Sexo</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($nameSexo) }}
+                            {{ Str::upper($nameSexo) }}
                         </dd>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Fecha de Nacimiento</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($formattedDateNac) }}
+                            {{ Str::upper($formattedDateNac) }}
                         </dd>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                         <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900">Apoderado</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                {{ strtoupper($applicant->nombres_apoderado) }}
-                                {{ strtoupper($applicant->ap_paterno_apoderado) }}
-                                {{ strtoupper($applicant->ap_materno_apoderado) }}
+                                {{ Str::upper($applicant->nombres_apoderado) }}
+                                {{ Str::upper($applicant->ap_paterno_apoderado) }}
+                                {{ Str::upper($applicant->ap_materno_apoderado) }}
                             </dd>
                         </div>
                     </div>
@@ -70,12 +70,12 @@
                             <dt class="text-sm font-medium leading-6 text-gray-900">Ubicación de Nacimiento</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                                 {{ $applicant->distritoNac->provincia->departamento->nombre }} |
-                                {{ $applicant->distritoNac->provincia->nombre }} | {{ strtoupper($distritNac) }}
+                                {{ $applicant->distritoNac->provincia->nombre }} | {{ Str::upper($distritNac) }}
                             </dd>
                         @else
                             <dt class="text-sm font-medium leading-6 text-gray-900">País de Procedencia</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                {{ strtoupper($applicant->pais->nombre) }}
+                                {{ Str::upper($applicant->pais->nombre) }}
                             </dd>
                         @endif
                     </div>
@@ -85,7 +85,7 @@
                         <dt class="text-sm font-medium leading-6 text-gray-900">Ubicación de Residencia</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                             {{ $applicant->distritoRes->provincia->departamento->nombre }} |
-                            {{ $applicant->distritoRes->provincia->nombre }} | {{ strtoupper($districtAddress) }}
+                            {{ $applicant->distritoRes->provincia->nombre }} | {{ Str::upper($districtAddress) }}
                         </dd>
                     </div>
                 </div>
@@ -93,14 +93,14 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Tipo de Dirección</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($typeAddress) }}</dd>
+                            {{ Str::upper($typeAddress) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Dirección</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($applicant->direccion) }}</dd>
+                            {{ Str::upper($applicant->direccion) }}</dd>
                     </div>
                 </div>
             </dl>
@@ -115,14 +115,14 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Teléfono de Postulante</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($applicant->telefono) }}</dd>
+                            {{ Str::upper($applicant->telefono) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Teléfono de Apoderado</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($applicant->telefono_ap) }}</dd>
+                            {{ Str::upper($applicant->telefono_ap) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
@@ -144,14 +144,14 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Distrito del Colegio</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($districtSchool) }}</dd>
+                            {{ Str::upper($districtSchool) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Nombre del Colegio</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($nameSchool) }}</dd>
+                            {{ Str::upper($nameSchool) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
@@ -168,7 +168,7 @@
                             <dt class="text-sm font-medium leading-6 text-gray-900">Universidad de Procedencia
                             </dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                {{ strtoupper($university) }}</dd>
+                                {{ Str::upper($university) }}</dd>
                         </div>
                     </div>
                 @endif
@@ -183,7 +183,7 @@
                 <div class="pt-2">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Sede</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ strtoupper($sede) }}
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ Str::upper($sede) }}
                         </dd>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Programa Académico</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($programAcademic) }}</dd>
+                            {{ Str::upper($programAcademic) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
@@ -205,7 +205,7 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Modalidad</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ strtoupper($modality) }}
+                            {{ Str::upper($modality) }}
                         </dd>
                     </div>
                 </div>

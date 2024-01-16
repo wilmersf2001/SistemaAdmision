@@ -64,7 +64,7 @@
                 <td class="encabezado" colspan="3">
                     <h3 align="center" style="margin-top: 35px">PROCESO DE ADMISIÓN 2024-I</h3>
                     <h2 align="center">REPORTE DE POSTULANTES INSCRITOS</h2>
-                    <h2 align="center">POR PROGRAMAS ACADÉMICOS</h2>
+                    <h2 align="center">POR FECHAS DE INSCRIPCIÓN</h2>
                     <div class="fecha-reporte">
                         <p>{{ $today }} {{ date('H:i:s A') }}</p>
                     </div>
@@ -73,7 +73,7 @@
             <thead>
                 <tr>
                     <td colspan="4" align="center">
-                        <p style="font-size: 14px; margin-top: 20px;">Pagos relizados del
+                        <p style="font-size: 14px; margin-top: 20px;">Postulantes inscritos del
                             <strong>{{ $fechaDesde }}</strong> al
                             <strong>{{ $fechaHasta }}</strong>
                         </p>
@@ -81,19 +81,19 @@
                 </tr>
                 <tr>
                     <td colspan="4" align="center" style="background-color: #2876b4;">
-                        <p style="text-align: center"></p><strong style="color: #fff">TOTAL DE INSCRITOS POR PROGRAMAS
-                            ACADÉMICOS</strong>
+                        <p style="text-align: center"><strong style="color: #fff">TOTAL DE INSCRITOS POR FECHAS DE
+                                INSCRIPCIÓN</strong></p>
                     </td>
                 </tr>
                 <tr>
-                    <th colspan="2" style="background-color: #747474; color: #fff">PROGRAMAS ACADÉMICOS</th>
+                    <th colspan="2" style="background-color: #747474; color: #fff">FECHAS DE INSCRIPCIÓN</th>
                     <th colspan="2" style="background-color: #747474; color: #fff">TOTAL DE INSCRITOS</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($resultadoInscritos as $inscritos)
                     <tr>
-                        <td colspan="2">{{ $inscritos->programa }}</td>
+                        <td colspan="2">{{ $inscritos->fecha_inscripcion }}</td>
                         <td colspan="2"><strong>{{ $inscritos->conteo }}</strong></td>
                     </tr>
                 @endforeach

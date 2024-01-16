@@ -33,8 +33,12 @@ class ApplicantPhotos extends Component
         $applicantIdList = [];
         $listUrlPhotoAndDni = $this->getApplicantDni();
         $dniApplicants = array_keys($listUrlPhotoAndDni);
-        $applicantPagination = Postulante::whereIn('num_documento', $dniApplicants)->paginate(10);
-        $totalApplicants = Postulante::whereIn('num_documento', $dniApplicants)->get();
+        $applicantPagination = Postulante::whereIn('num_documento', $dniApplicants)
+            ->where('estado_postulante_id', '<>', Constants::ESTADO_INSCRIPCION_ANULADA)
+            ->paginate(10);
+        $totalApplicants = Postulante::whereIn('num_documento', $dniApplicants)
+            ->where('estado_postulante_id', '<>', Constants::ESTADO_INSCRIPCION_ANULADA)
+            ->get();
         $applicantIdList = $totalApplicants->pluck('id')->all();
 
         return view('livewire.admision.applicant-photos', compact('applicantPagination', 'totalApplicants', 'applicantIdList', 'listUrlPhotoAndDni'));

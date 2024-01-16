@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -15,8 +16,8 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         User::create([
-            'nombre' => trim(strtoupper($request->nombre)),
-            'apellido' => trim(strtoupper($request->apellido)),
+            'nombre' => trim(Str::upper($request->nombre)),
+            'apellido' => trim(Str::upper($request->apellido)),
             'usuario' => trim($request->usuario),
             'password' => Hash::make($request->input('password')),
         ]);
@@ -32,8 +33,8 @@ class UserController extends Controller
         }
 
         $user->update([
-            'nombre' => trim(strtoupper($request->nombre)),
-            'apellido' => trim(strtoupper($request->apellido)),
+            'nombre' => trim(Str::upper($request->nombre)),
+            'apellido' => trim(Str::upper($request->apellido)),
             'usuario' => trim($request->usuario),
             'password' => Hash::make($request->input('password')),
         ]);

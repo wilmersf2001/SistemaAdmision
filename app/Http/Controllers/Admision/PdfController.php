@@ -9,6 +9,7 @@ use App\Models\Banco;
 use App\Models\Proceso;
 use App\Utils\UtilFunction;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class PdfController extends Controller
 {
@@ -73,7 +74,7 @@ class PdfController extends Controller
         return PDF::loadView('admision.reports.pdf-pagos', $data)->stream();
     }
 
-    public function reporteInscritos(Request $request)
+    public function reporteProgramasInscritos(Request $request)
     {
         $fechaDesde = $request->fecha_desde;
         $fechaHasta = $request->fecha_hasta;
@@ -92,6 +93,27 @@ class PdfController extends Controller
             'today' => UtilFunction::getDateToday(),
         ];
 
-        return PDF::loadView('admision.reports.pdf-inscritos', $data)->stream();
+        return PDF::loadView('admision.reports.pdf-programas-inscritos', $data)->stream();
+    }
+
+    public function reporteFechasInscritos(Request $request)
+    {
+        $fechaDesde = $request->fecha_desde;
+        $fechaHasta = $request->fecha_hasta;
+
+        $resultadoInscritos = Postulante::selectRaw('COUNT(*) as conteo, DATE(fecha_inscripcion) as fecha_inscripcion')
+            ->whereBetween('fecha_inscripcion', [$fechaDesde, $fechaHasta])
+            ->orderBy('fecha_inscripcion', 'asc')
+            ->groupBy(DB::raw('DATE(fecha_inscripcion)'))
+            ->get();
+
+        $data = [
+            'fechaDesde' => $fechaDesde,
+            'fechaHasta' => $fechaHasta,
+            'resultadoInscritos' => $resultadoInscritos,
+            'today' => UtilFunction::getDateToday(),
+        ];
+
+        return PDF::loadView('admision.reports.pdf-fechas-inscritos', $data)->stream();
     }
 }

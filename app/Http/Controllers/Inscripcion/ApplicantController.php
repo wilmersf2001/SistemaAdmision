@@ -11,6 +11,7 @@ use App\Utils\UtilFunction;
 use App\Models\Postulante;
 use App\Utils\Constants;
 use App\Models\Banco;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ApplicantController extends Controller
@@ -44,19 +45,19 @@ class ApplicantController extends Controller
             'num_documento' => $request->num_documento,
             'tipo_documento' => $request->tipo_documento,
             'num_voucher' => $request->num_voucher,
-            'nombres' => trim(strtoupper($request->nombres)),
-            'ap_paterno' => trim(strtoupper($request->ap_paterno)),
-            'ap_materno' => trim(strtoupper($request->ap_materno)),
+            'nombres' => trim(Str::upper($request->nombres)),
+            'ap_paterno' => trim(Str::upper($request->ap_paterno)),
+            'ap_materno' => trim(Str::upper($request->ap_materno)),
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'sexo_id' => $request->sexo_id,
             'num_documento_apoderado' => $request->filled('num_documento_apoderado') ? $request->num_documento_apoderado : null,
-            'nombres_apoderado' => $request->filled('nombres_apoderado') ? trim(strtoupper($request->nombres_apoderado)) : null,
-            'ap_paterno_apoderado' => $request->filled('ap_paterno_apoderado') ? trim(strtoupper($request->ap_paterno_apoderado)) : null,
-            'ap_materno_apoderado' => $request->filled('ap_materno_apoderado') ? trim(strtoupper($request->ap_materno_apoderado)) : null,
+            'nombres_apoderado' => $request->filled('nombres_apoderado') ? trim(Str::upper($request->nombres_apoderado)) : null,
+            'ap_paterno_apoderado' => $request->filled('ap_paterno_apoderado') ? trim(Str::upper($request->ap_paterno_apoderado)) : null,
+            'ap_materno_apoderado' => $request->filled('ap_materno_apoderado') ? trim(Str::upper($request->ap_materno_apoderado)) : null,
             'distrito_nac_id' => $request->distrito_nac,
             'distrito_res_id' => $request->distrito_res,
             'tipo_direccion_id' => $request->tipo_direccion,
-            'direccion' => trim(strtoupper($request->direccion)),
+            'direccion' => trim(Str::upper($request->direccion)),
             'telefono' => $request->telefono,
             'telefono_ap' => $request->telefono_ap,
             'correo' => $request->correo,
@@ -94,13 +95,13 @@ class ApplicantController extends Controller
         $generateQr = UtilFunction::validateQr($request->all(), $applicant->num_documento);
 
         $applicant->update([
-            'nombres' => trim(strtoupper($request->nombres)),
-            'ap_paterno' => trim(strtoupper($request->apPaterno)),
-            'ap_materno' => trim(strtoupper($request->apMaterno)),
+            'nombres' => trim(Str::upper($request->nombres)),
+            'ap_paterno' => trim(Str::upper($request->apPaterno)),
+            'ap_materno' => trim(Str::upper($request->apMaterno)),
             'correo' => $request->correo,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'telefono' => $request->telefono,
-            'direccion' => trim(strtoupper($request->direccion)),
+            'direccion' => trim(Str::upper($request->direccion)),
             'telefono_ap' => $request->telefono_ap,
             'distrito_nac_id' => $request->distrito_n,
             'distrito_res_id' => $request->distrito_r,
@@ -119,9 +120,9 @@ class ApplicantController extends Controller
     {
         $applicant->update([
             'num_documento_apoderado' => $request->num_documento_apoderado,
-            'nombres_apoderado' => trim(strtoupper($request->nombres_apoderado)),
-            'ap_paterno_apoderado' => trim(strtoupper($request->ap_paterno_apoderado)),
-            'ap_materno_apoderado' => trim(strtoupper($request->ap_materno_apoderado)),
+            'nombres_apoderado' => trim(Str::upper($request->nombres_apoderado)),
+            'ap_paterno_apoderado' => trim(Str::upper($request->ap_paterno_apoderado)),
+            'ap_materno_apoderado' => trim(Str::upper($request->ap_materno_apoderado)),
         ]);
 
         return redirect()->route('home.modifyApoderado')->with('success', 'Datos del apoderado actualizados correctamente');

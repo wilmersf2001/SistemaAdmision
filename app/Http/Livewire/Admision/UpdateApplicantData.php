@@ -12,6 +12,7 @@ use \App\Models\Distrito;
 use App\Models\Modalidad;
 use App\Models\Provincia;
 use App\Models\Colegio;
+use Illuminate\Support\Str;
 use App\Models\Banco;
 
 class UpdateApplicantData extends Component
@@ -161,9 +162,9 @@ class UpdateApplicantData extends Component
         $validatedData = $this->validate();
 
         UtilFunction::moveQrImageByDni('QR' . md5($this->applicant->num_documento));
-        $this->applicant->nombres = trim(strtoupper($this->applicant->nombres));
-        $this->applicant->ap_paterno = trim(strtoupper($this->applicant->ap_paterno));
-        $this->applicant->ap_materno = trim(strtoupper($this->applicant->ap_materno));
+        $this->applicant->nombres = trim(Str::upper($this->applicant->nombres));
+        $this->applicant->ap_paterno = trim(Str::upper($this->applicant->ap_paterno));
+        $this->applicant->ap_materno = trim(Str::upper($this->applicant->ap_materno));
         $this->applicant->update($validatedData);
         UtilFunction::updateQr($this->applicant->id);
 

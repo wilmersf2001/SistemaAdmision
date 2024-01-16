@@ -1,6 +1,6 @@
 <div class="animate-fade-in">
-    <form action="{{ route('pdf.reporteInscritos') }}" method="POST" class="flex justify-between lg:flex-row flex-col"
-        target="_blank">
+    <form id="reportForm" action="{{ route('pdf.reporteProgramasInscritos') }}" method="POST"
+        class="flex justify-between lg:flex-row flex-col" target="_blank">
         @csrf
         <div class="grid grid-cols-2 gap-6">
             <label class="block mb-6">
@@ -22,32 +22,35 @@
                 <x-input.error for="fechaHasta" />
             </label>
         </div>
-        <div class="flex w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow items-center">
-            <ul role="list" class="space-y-2">
-                <li class="flex">
-                    <svg class="flex-shrink-0 w-4 h-4 text-blue-600" aria-hidden="true" fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                    </svg>
-                    <span class="text-base font-normal leading-tight text-gray-900 ms-3">Total Inscritos:
-                        {{ $postulantesInscritos->count() > 0 ? $postulantesInscritos->sum('conteo') : '-' }}
-                    </span>
-                </li>
-            </ul>
-            <div class="flex flex-1 justify-end">
-                <div class="p-2">
-                    @if ($errors->any() || $postulantesInscritos->count() == 0)
-                        <button type="button" class="bg-gray-300 p-2 rounded-full text-gray-500" disabled>
-                            <x-icons.doc />
-                        </button>
-                    @else
-                        <button type="submit" class="bg-blue-600 p-2 rounded-full text-white cursor-pointer">
-                            <x-icons.doc />
-                        </button>
-                    @endif
+        <div class="flex max-w-md items-center">
+            <div class="text-sm mr-3">Descargar por:</div>
+            @if ($errors->any() || $postulantesInscritos->count() == 0)
+                <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button type="button" disabled
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-s-lg">
+                        <div class="mr-2"><x-icons.doc /></div>
+                        Programas académicos
+                    </button>
+                    <button type="button" disabled
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-600 bg-white border border-gray-200 rounded-e-lg">
+                        <div class="mr-2"><x-icons.doc /></div>
+                        Fechas
+                    </button>
                 </div>
-            </div>
+            @else
+                <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button type="button" onclick="updateAction('{{ route('pdf.reporteProgramasInscritos') }}')"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700">
+                        <div class="mr-2"><x-icons.doc /></div>
+                        Programas académicos
+                    </button>
+                    <button type="button" onclick="updateAction('{{ route('pdf.reporteFechasInscritos') }}')"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700">
+                        <div class="mr-2"><x-icons.doc /></div>
+                        Fechas
+                    </button>
+                </div>
+            @endif
         </div>
     </form>
     @if ($postulantesInscritos->count() > 0)
@@ -86,4 +89,10 @@
             <span class="font-medium">No se encontraron registros de usuarios</span>
         </div>
     @endif
+    <script>
+        function updateAction(action) {
+            document.getElementById('reportForm').action = action;
+            document.getElementById('reportForm').submit();
+        }
+    </script>
 </div>
