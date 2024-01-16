@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get("reporte-pagos", [HomeController::class, "reportePagos"])->name('home.reportePagos');
 		Route::post('pagos-reporte', [PdfController::class, "reportePagos"])->name('pdf.reportePagos');
 		Route::get("reporte-inscritos", [HomeController::class, "reporteInscritos"])->name('home.reporteInscritos');
+		Route::post('inscritos-reporte', [PdfController::class, "reporteInscritos"])->name('pdf.reporteInscritos');
 		//RUTAS DISTRIBUTION VACANTES
 		Route::get("asignar-vacantes", [HomeController::class, "assignVacancies"])->name('home.assignVacancies');
 		Route::get("distribucion-vacantes", [HomeController::class, "vacancyDistribution"])->name('home.vacancyDistribution');

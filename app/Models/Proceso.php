@@ -29,4 +29,10 @@ class Proceso extends Model
     {
         return self::where('estado', 1)->exists();
     }
+
+    public static function getStartDate()
+    {
+        $process = self::where('estado', 1)->first();
+        return $process ? $process->fecha_inicio : null;
+    }
 }

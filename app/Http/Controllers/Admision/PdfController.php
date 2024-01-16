@@ -51,28 +51,47 @@ class PdfController extends Controller
 
     public function reportePagos(Request $request)
     {
-        $fechaDesde = $request->fechaDesde;
-        $fechaHasta = $request->fechaHasta;
+        $fechaDesde = $request->fecha_desde;
+        $fechaHasta = $request->fecha_hasta;
 
-        $pagosPagination = Banco::whereBetween('fecha', [$fechaDesde, $fechaHasta])
-            ->orderBy('fecha', 'desc')
-            ->paginate(10);
-
-        $pagosTotal = Banco::whereBetween('fecha', [$fechaDesde, $fechaHasta])
+        $resultadoPagos = Banco::selectRaw('fecha, 
+                     SUM(CASE WHEN cod_concepto = "00346" THEN 1 ELSE 0 END) as pago_nacional, 
+                     SUM(CASE WHEN cod_concepto = "00345" THEN 1 ELSE 0 END) as pago_particular')
+            ->whereBetween('fecha', [$fechaDesde, $fechaHasta])
+            ->groupBy('fecha')
             ->orderBy('fecha', 'desc')
             ->get();
 
-        $totalInsNacional = $pagosTotal->where('cod_concepto', '00346')->count();
-        $totalInsParticular = $pagosTotal->where('cod_concepto', '00345')->count();
-
         $data = [
-            'pagosPagination' => $pagosPagination,
-            'totalInsNacional' => $totalInsNacional,
-            'totalInsParticular' => $totalInsParticular,
             'fechaDesde' => $fechaDesde,
             'fechaHasta' => $fechaHasta,
+            'resultadoPagos' => $resultadoPagos,
+            'totalPagos' => $resultadoPagos->sum('pago_nacional') + $resultadoPagos->sum('pago_particular'),
+            'today' => UtilFunction::getDateToday(),
         ];
 
         return PDF::loadView('admision.reports.pdf-pagos', $data)->stream();
+    }
+
+    public function reporteInscritos(Request $request)
+    {
+        $fechaDesde = $request->fecha_desde;
+        $fechaHasta = $request->fecha_hasta;
+
+        $resultadoInscritos = Postulante::selectRaw('COUNT(*) as conteo, tb_programa_academico.nombre as programa')
+            ->join('tb_programa_academico', 'programa_academico_id', '=', 'tb_programa_academico.id')
+            ->whereBetween('fecha_inscripcion', [$fechaDesde, $fechaHasta])
+            ->orderBy('tb_programa_academico.nombre', 'asc')
+            ->groupBy('programa_academico_id', 'tb_programa_academico.nombre')
+            ->get();
+
+        $data = [
+            'fechaDesde' => $fechaDesde,
+            'fechaHasta' => $fechaHasta,
+            'resultadoInscritos' => $resultadoInscritos,
+            'today' => UtilFunction::getDateToday(),
+        ];
+
+        return PDF::loadView('admision.reports.pdf-inscritos', $data)->stream();
     }
 }

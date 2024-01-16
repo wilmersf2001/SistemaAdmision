@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/New_York',
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         //My proviver
-        App\Providers\ApiReniecProvider::class, 
+        App\Providers\ApiReniecProvider::class,
 
     ])->toArray(),
 
