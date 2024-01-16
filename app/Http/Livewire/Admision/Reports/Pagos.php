@@ -13,21 +13,25 @@ class Pagos extends Component
     public $totalInsNacional;
     public $totalInsParticular;
 
-    public function render()
+    public function mount()
     {
         $this->fechaDesde = Proceso::where('id', 1)->value('fecha_inicio');
         $this->fechaHasta = date('Y-m-d');
-        $pagos = Banco::whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
+    }
+
+    public function render()
+    {
+        $pagosPagination = Banco::whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
             ->orderBy('fecha', 'desc')
             ->paginate(10);
 
-        $this->totalInsNacional = Banco::where('cod_concepto', '00346')
-            ->whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
-            ->count();
-        $this->totalInsParticular = Banco::where('cod_concepto', '00345')
-            ->whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
-            ->count();
+        $pagosTotal = Banco::whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
+            ->orderBy('fecha', 'desc')
+            ->get();
 
-        return view('livewire.admision.reports.pagos', compact('pagos'));
+        $this->totalInsNacional = $pagosTotal->where('cod_concepto', '00346')->count();
+        $this->totalInsParticular = $pagosTotal->where('cod_concepto', '00345')->count();
+
+        return view('livewire.admision.reports.pagos', compact('pagosPagination'));
     }
 }

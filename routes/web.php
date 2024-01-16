@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete("process-destroy/{process}", [ProcessController::class, "destroy"])->name('process.destroy');
 		//REPORTES
 		Route::get("reporte-pagos", [HomeController::class, "reportePagos"])->name('home.reportePagos');
+		Route::post('pagos-reporte', [PdfController::class, "reportePagos"])->name('pdf.reportePagos');
 		Route::get("reporte-inscritos", [HomeController::class, "reporteInscritos"])->name('home.reporteInscritos');
 		//RUTAS DISTRIBUTION VACANTES
 		Route::get("asignar-vacantes", [HomeController::class, "assignVacancies"])->name('home.assignVacancies');

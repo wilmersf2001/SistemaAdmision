@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admision;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Postulante;
+use App\Models\Banco;
 use App\Models\Proceso;
 use App\Utils\UtilFunction;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -46,5 +47,32 @@ class PdfController extends Controller
         ];
 
         return PDF::loadView('inscripcion.pdf-ficha-inscripcion', $data)->stream();
+    }
+
+    public function reportePagos(Request $request)
+    {
+        $fechaDesde = $request->fechaDesde;
+        $fechaHasta = $request->fechaHasta;
+
+        $pagosPagination = Banco::whereBetween('fecha', [$fechaDesde, $fechaHasta])
+            ->orderBy('fecha', 'desc')
+            ->paginate(10);
+
+        $pagosTotal = Banco::whereBetween('fecha', [$fechaDesde, $fechaHasta])
+            ->orderBy('fecha', 'desc')
+            ->get();
+
+        $totalInsNacional = $pagosTotal->where('cod_concepto', '00346')->count();
+        $totalInsParticular = $pagosTotal->where('cod_concepto', '00345')->count();
+
+        $data = [
+            'pagosPagination' => $pagosPagination,
+            'totalInsNacional' => $totalInsNacional,
+            'totalInsParticular' => $totalInsParticular,
+            'fechaDesde' => $fechaDesde,
+            'fechaHasta' => $fechaHasta,
+        ];
+
+        return PDF::loadView('admision.reports.pdf-pagos', $data)->stream();
     }
 }
