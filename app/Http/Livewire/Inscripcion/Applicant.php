@@ -22,6 +22,7 @@ use App\Models\Banco;
 use App\Models\Colegio;
 use App\Models\Proceso;
 use App\Utils\Constants;
+use Carbon\Carbon;
 
 class Applicant extends Component
 {
@@ -103,14 +104,24 @@ class Applicant extends Component
   {
     $this->searchSchools();
     if ($this->applicant->fecha_nacimiento && !$this->getErrorBag()->has('applicant.fecha_nacimiento')) {
-      $this->isAgeMinor = UtilFunction::isAgeMinor($this->applicant->fecha_nacimiento);
+      $this->isAgeMinor = self::isAgeMinor($this->applicant->fecha_nacimiento);
       if (!$this->isAgeMinor) {
         $this->applicant->num_documento_apoderado = null;
         $this->resetDataApoderado();
       }
+    } else {
+      $this->isAgeMinor = false;
     }
 
     return view('livewire.inscripcion.applicant');
+  }
+
+  private static function isAgeMinor(string $date): bool
+  {
+    $dateOfBirth = Carbon::create($date);
+    $age = $dateOfBirth->diffInYears();
+
+    return $age < 18;
   }
 
   public function getApoderadoDataByDni(ApiReniecService $apiReniecService)
