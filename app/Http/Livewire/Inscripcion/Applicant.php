@@ -81,12 +81,6 @@ class Applicant extends Component
     $this->applicant = $responseApiReniec;
     $this->bank = $bank;
     $this->departaments =  $locationService->getDepartments();
-    $this->provincesBirth = $locationService->getProvinces();
-    $this->districtsBirth = $locationService->getDistricts();
-    $this->provincesReside = $locationService->getProvinces();
-    $this->districtsReside = $locationService->getDistricts();
-    $this->provincesOriginSchool = $locationService->getProvinces();
-    $this->districtsOriginSchool = $locationService->getDistricts();
     $this->countries = $locationService->getCountries();
     $this->adressType = $formDataService->getAdressType();
     $this->generos = $formDataService->getGeneros();
@@ -187,8 +181,6 @@ class Applicant extends Component
   {
     if ($action == 'DEPARTMENT') {
       $this->provincesBirth = Departamento::find($idlocation)->provincias()->get();
-      $provinceBirthId = $this->provincesBirth->first()->id;
-      $this->districtsBirth = Provincia::find($provinceBirthId)->distritos()->get();
       $this->reset('selectedProvinceBirthId');
     } elseif ($action == 'PROVINCE') {
       $this->districtsBirth = Provincia::find($idlocation)->distritos()->get();
@@ -200,8 +192,6 @@ class Applicant extends Component
   {
     if ($action == 'DEPARTMENT') {
       $this->provincesReside = Departamento::find($idlocation)->provincias()->get();
-      $provinceResideId = $this->provincesReside->first()->id;
-      $this->districtsReside = Provincia::find($provinceResideId)->distritos()->get();
       $this->reset('selectedProvinceResideId');
     } elseif ($action == 'PROVINCE') {
       $this->districtsReside = Provincia::find($idlocation)->distritos()->get();
@@ -213,14 +203,20 @@ class Applicant extends Component
   {
     if ($action == 'DEPARTMENT') {
       $this->provincesOriginSchool = Departamento::find($idlocation)->provincias()->get();
-      $provinceOriginSchoolId = $this->provincesOriginSchool->first()->id;
-      $this->districtsOriginSchool = Provincia::find($provinceOriginSchoolId)->distritos()->get();
-      $this->reset(['selectedProvinceOriginSchoolId', 'selectedDistrictOriginSchoolId', 'searchSchoolName']);
+      $this->reset(['selectedProvinceOriginSchoolId']);
     } elseif ($action == 'PROVINCE') {
       $this->districtsOriginSchool = Provincia::find($idlocation)->distritos()->get();
-      $this->reset(['selectedDistrictOriginSchoolId']);
     }
+    $this->reset(['searchSchoolName', 'selectedDistrictOriginSchoolId']);
+    $this->applicant->colegio_id = null;
   }
+
+  public function resetSchool()
+  {
+    $this->reset(['searchSchoolName']);
+    $this->applicant->colegio_id = null;
+  }
+
   public function LocationOutsideCountry(int $idlocation)
   {
     $this->selectedDepartamentOriginSchoolId = $idlocation;

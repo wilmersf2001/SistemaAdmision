@@ -114,30 +114,40 @@
                             <span class="block mb-2 text-sm font-medium text-gray-900">
                                 Provincia
                             </span>
-                            <select wire:change="changePlaceBirth('PROVINCE',$event.target.value)"
-                                wire:model="selectedProvinceBirthId"
-                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                                <option class="hidden">Seleccionar</option>
-                                @foreach ($provincesBirth as $provinceBirth)
-                                    <option value={{ $provinceBirth->id }}>
-                                        {{ $provinceBirth->nombre }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            @if ($provincesBirth)
+                                <select wire:change="changePlaceBirth('PROVINCE',$event.target.value)"
+                                    wire:model="selectedProvinceBirthId"
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                                    <option class="hidden">Seleccionar</option>
+                                    @foreach ($provincesBirth as $provinceBirth)
+                                        <option value={{ $provinceBirth->id }}>
+                                            {{ $provinceBirth->nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            @else
+                                <input type="text" placeholder="Seleccione departamento" disabled
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 block w-full rounded-md sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none" />
+                            @endif
                         </label>
                         <label class="block mb-10">
                             <span class="block mb-2 text-sm font-medium text-gray-900">
                                 Distrito
                             </span>
-                            <select name="distrito_nac" wire:model="applicant.distrito_nac_id"
-                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                                <option class="hidden">Seleccionar</option>
-                                @foreach ($districtsBirth as $districtBirth)
-                                    <option value={{ $districtBirth->id }}>
-                                        {{ $districtBirth->nombre }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            @if ($districtsBirth && $selectedProvinceBirthId != null)
+                                <select name="distrito_nac" wire:model="applicant.distrito_nac_id"
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                                    <option class="hidden">Seleccionar</option>
+                                    @foreach ($districtsBirth as $districtBirth)
+                                        <option value={{ $districtBirth->id }}>
+                                            {{ $districtBirth->nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            @else
+                                <input type="text" placeholder="Seleccione provincia" disabled
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 block w-full rounded-md sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none" />
+                            @endif
                             <x-input.error for="applicant.distrito_nac_id" />
                         </label>
                     </div>
@@ -194,30 +204,40 @@
                         <span class="block mb-2 text-sm font-medium text-gray-900">
                             Provincia
                         </span>
-                        <select wire:change="changePlaceReside('PROVINCE',$event.target.value)"
-                            wire:model="selectedProvinceResideId"
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option class="hidden">Seleccionar</option>
-                            @foreach ($provincesReside as $provinceReside)
-                                <option value={{ $provinceReside->id }}>
-                                    {{ $provinceReside->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
+                        @if ($provincesReside)
+                            <select wire:change="changePlaceReside('PROVINCE',$event.target.value)"
+                                wire:model="selectedProvinceResideId"
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                                <option class="hidden">Seleccionar</option>
+                                @foreach ($provincesReside as $provinceReside)
+                                    <option value={{ $provinceReside->id }}>
+                                        {{ $provinceReside->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="text" placeholder="Seleccione departamento" disabled
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 block w-full rounded-md sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none" />
+                        @endif
                     </label>
                     <label class="block mb-10">
                         <span class="block mb-2 text-sm font-medium text-gray-900">
                             Distrito
                         </span>
-                        <select name="distrito_res" wire:model="applicant.distrito_res_id"
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option class="hidden">Seleccionar</option>
-                            @foreach ($districtsReside as $districtReside)
-                                <option value={{ $districtReside->id }}>
-                                    {{ $districtReside->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
+                        @if ($districtsReside && $selectedProvinceResideId != null)
+                            <select name="distrito_res" wire:model="applicant.distrito_res_id"
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                                <option class="hidden">Seleccionar</option>
+                                @foreach ($districtsReside as $districtReside)
+                                    <option value={{ $districtReside->id }}>
+                                        {{ $districtReside->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="text" placeholder="Seleccione provincia" disabled
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 block w-full rounded-md sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none" />
+                        @endif
                         <x-input.error for="applicant.distrito_res_id" />
                     </label>
                 </div>
@@ -324,16 +344,21 @@
                         <span class="block mb-2 text-sm font-medium text-gray-900">
                             Provincia de Procedencia Colegio
                         </span>
-                        <select wire:change="changePlaceOriginSchool('PROVINCE',$event.target.value)"
-                            wire:model="selectedProvinceOriginSchoolId"
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option class="hidden">Seleccionar</option>
-                            @foreach ($provincesOriginSchool as $provinceOriginSchool)
-                                <option value={{ $provinceOriginSchool->id }}>
-                                    {{ $provinceOriginSchool->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
+                        @if ($provincesOriginSchool)
+                            <select wire:change="changePlaceOriginSchool('PROVINCE',$event.target.value)"
+                                wire:model="selectedProvinceOriginSchoolId"
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                                <option class="hidden">Seleccionar</option>
+                                @foreach ($provincesOriginSchool as $provinceOriginSchool)
+                                    <option value={{ $provinceOriginSchool->id }}>
+                                        {{ $provinceOriginSchool->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="text" placeholder="Seleccione departamento" disabled
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 block w-full rounded-md sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none" />
+                        @endif
                         <x-input.error for="selectedProvinceOriginSchoolId" />
                     </label>
 
@@ -341,15 +366,20 @@
                         <span class="block mb-2 text-sm font-medium text-gray-900">
                             Distrito de Procedencia Colegio
                         </span>
-                        <select wire:model="selectedDistrictOriginSchoolId"
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
-                            <option class="hidden">Seleccionar</option>
-                            @foreach ($districtsOriginSchool as $districtOriginSchool)
-                                <option value={{ $districtOriginSchool->id }}>
-                                    {{ $districtOriginSchool->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
+                        @if ($districtsOriginSchool && $selectedProvinceOriginSchoolId != null)
+                            <select wire:model="selectedDistrictOriginSchoolId" wire:change="resetSchool"
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1">
+                                <option class="hidden">Seleccionar</option>
+                                @foreach ($districtsOriginSchool as $districtOriginSchool)
+                                    <option value={{ $districtOriginSchool->id }}>
+                                        {{ $districtOriginSchool->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input type="text" placeholder="Seleccione provincia" disabled
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 block w-full rounded-md sm:text-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none" />
+                        @endif
                         <x-input.error for="selectedDistrictOriginSchoolId" />
                     </label>
                 </div>
@@ -360,38 +390,44 @@
                         <span class="block mb-2 text-sm font-medium text-gray-900">
                             Nombre del Colegio
                         </span>
-                        <input type="text" wire:model.debounce.500ms="searchSchoolName"
-                            wire:input="$set('showSchools', true)"
-                            class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-                            placeholder="Ejem: San Martín de los Andes" />
+                        @if ($selectedDistrictOriginSchoolId)
+                            <input type="text" wire:model.debounce.500ms="searchSchoolName"
+                                wire:input="$set('showSchools', true)"
+                                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                placeholder="Ejem: San Martín de los Andes" />
 
-                        @if ((!$selectedDistrictOriginSchoolId || !$typeSchool) && $searchSchoolName != null && !$errors->any())
-                            <p class="absolute peer-invalid:visible text-red-600 text-xs animate-slide-in-left">
-                                seleccione el distrito de procedencia y tipo colegio</p>
-                        @endif
-
-                        @if (session()->has('null'))
-                            <p class="absolute peer-invalid:visible text-red-600 text-xs animate-slide-in-left">
-                                {{ session('null') }}</p>
-                        @else
-                            @if ($showSchools && $selectedDistrictOriginSchoolId && $typeSchool)
-                                <ul
-                                    class="w-full absolute shadow bg-white max-w-md max-h-48 p-2 overflow-y-auto text-sm text-gray-700">
-                                    @foreach ($schools as $school)
-                                        <li wire:click="updateSchool({{ $school->id }})">
-                                            <div
-                                                class="flex items-center pl-2 rounded hover:bg-gray-100 cursor-pointer">
-                                                <p
-                                                    class="w-full py-2 text-xs font-medium text-gray-900 rounded dark:text-gray-900">
-                                                    {{ $school->nombre }}
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $school->distrito }}</span>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                            @if ((!$selectedDistrictOriginSchoolId || !$typeSchool) && $searchSchoolName != null && !$errors->any())
+                                <p class="absolute peer-invalid:visible text-red-600 text-xs animate-slide-in-left">
+                                    seleccione el distrito de procedencia y tipo colegio</p>
                             @endif
+
+                            @if (session()->has('null'))
+                                <p class="absolute peer-invalid:visible text-red-600 text-xs animate-slide-in-left">
+                                    {{ session('null') }}</p>
+                            @else
+                                @if ($showSchools && $selectedDistrictOriginSchoolId && $typeSchool)
+                                    <ul
+                                        class="w-full absolute shadow bg-white max-w-md max-h-48 p-2 overflow-y-auto text-sm text-gray-700">
+                                        @foreach ($schools as $school)
+                                            <li wire:click="updateSchool({{ $school->id }})">
+                                                <div
+                                                    class="flex items-center pl-2 rounded hover:bg-gray-100 cursor-pointer">
+                                                    <p
+                                                        class="w-full py-2 text-xs font-medium text-gray-900 rounded dark:text-gray-900">
+                                                        {{ $school->nombre }}
+                                                    </p>
+                                                    <span
+                                                        class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $school->distrito }}</span>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            @endif
+                        @else
+                            <div
+                                class="mt-1 px-3 py-2 border placeholder-slate-400 block w-full rounded-md sm:text-sm bg-slate-50 text-slate-500 border-slate-200 shadow-none">
+                                Complete ubicación del colegio </div>
                         @endif
                         <x-input.error for="applicant.colegio_id" />
                     </label>
