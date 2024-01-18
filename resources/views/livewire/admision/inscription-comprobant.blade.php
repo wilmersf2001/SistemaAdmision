@@ -79,7 +79,7 @@
                             </div>
                             @if ($applicantExists)
                                 <div class="animate-fade-in">
-                                    @if ($validApplicantExists || $user->getRoleNames()->implode('') === 'admin')
+                                    @if ($validApplicantExists && $user->getRoleNames()->implode('') === 'admin')
                                         <div class="flex">
                                             <a target="_black"
                                                 href={{ route('pdf.pdfData', ['dni' => $applicant->num_documento]) }}

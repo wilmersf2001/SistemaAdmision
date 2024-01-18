@@ -34,8 +34,10 @@ class InscriptionComprobant extends Component
     public function searchByDni()
     {
         $this->validate();
-        $this->applicantExists = Postulante::where('num_documento', $this->dniApplicant)->exists();
-        $this->validApplicantExists = Postulante::where('num_documento', $this->dniApplicant)->whereIn('estado_postulante_id', Constants::ESTADOS_VALIDOS_POSTULANTE)->exists();
-        $this->applicant = Postulante::where('num_documento', $this->dniApplicant)->first();
+        $this->applicantExists = Postulante::where('num_documento', $this->dniApplicant)->where('estado_postulante_id', '!=', Constants::ESTADO_INSCRIPCION_ANULADA)->exists();
+        $this->validApplicantExists = Postulante::where('num_documento', $this->dniApplicant)->whereIn('estado_postulante_id', Constants::ESTADOS_VALIDOS_POSTULANTE_ADMISION)->exists();
+        $this->applicant = Postulante::where('num_documento', $this->dniApplicant)
+            ->where('estado_postulante_id', '!=', Constants::ESTADO_INSCRIPCION_ANULADA)
+            ->first();
     }
 }
