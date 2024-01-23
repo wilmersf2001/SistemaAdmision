@@ -47,7 +47,6 @@ class Applicant extends Component
   public $generos;
   public $schools;
   public $sedes;
-  public $modalities;
   public $academicPrograms;
   public $universities;
   public $searchSchoolName;
@@ -86,7 +85,6 @@ class Applicant extends Component
     $this->adressType = $formDataService->getAdressType();
     $this->generos = $formDataService->getGeneros();
     $this->sedes = $formDataService->getSedes();
-    $this->modalities = $formDataService->getModalities();
     $this->academicPrograms = DistribucionVacante::getProgramasAcademicosByModalidad($this->applicant->modalidad_id);
     $this->formattedToday = UtilFunction::getDateToday();
     $this->typeSchool = $typeSchool;

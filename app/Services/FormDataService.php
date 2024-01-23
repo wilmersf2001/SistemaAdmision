@@ -7,7 +7,6 @@ use App\Models\Modalidad;
 use App\Models\Sede;
 use App\Models\TipoDireccion;
 use App\Models\Universidad;
-use App\Models\Colegio;
 use Illuminate\Support\Facades\Cache;
 
 class FormDataService

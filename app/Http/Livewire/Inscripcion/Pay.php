@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Inscripcion;
 use Livewire\Component;
 use App\Http\Requests\View\Message\ValidatePayment;
 use App\Models\Modalidad;
+use App\Services\FormDataService;
 
 class Pay extends Component
 {
@@ -32,9 +33,9 @@ class Pay extends Component
     $this->validateOnly($propertyName);
   }
 
-  public function mount()
+  public function mount(FormDataService $formDataService)
   {
-    $this->modalities = Modalidad::where('estado', 1)->get();
+    $this->modalities = $formDataService->getModalities();
   }
 
   public function render()
