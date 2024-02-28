@@ -41,7 +41,7 @@
             </div>
         </nav>
         <main class="min-h-full pt-8 mx-auto max-w-7xl px-6 lg:px-8">
-            @if ($processNumber)
+            @if ($processNumber || Route::currentRouteName() === 'login')
                 @yield('content')
             @else
                 <section class="bg-white rounded-3xl">
