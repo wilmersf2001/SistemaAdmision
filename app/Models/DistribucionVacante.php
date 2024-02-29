@@ -9,7 +9,7 @@ class DistribucionVacante extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_distribucion_vacante';
+    protected $table = 'tb_distribucion_vacantes';
 
     protected $fillable = [
         'vacantes',

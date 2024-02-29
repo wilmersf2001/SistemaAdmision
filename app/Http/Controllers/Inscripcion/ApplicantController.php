@@ -60,7 +60,7 @@ class ApplicantController extends Controller
             'direccion' => trim(Str::upper($request->direccion)),
             'telefono' => $request->telefono,
             'telefono_ap' => $request->telefono_ap,
-            'correo' => $request->correo,
+            'correo' => trim(Str::lower($request->correo)),
             'colegio_id' => $request->colegio_id,
             'universidad_id' => $request->filled('universidad_id') ? $request->universidad_id : null,
             'num_veces_otros' => $request->num_veces_otro,

@@ -144,14 +144,16 @@
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Distrito del Colegio</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ Str::upper($districtSchool) }}</dd>
+                            {{ $school->distrito->nombre }} |
+                            {{ $school->distrito->provincia->nombre }} |
+                            {{ $school->distrito->provincia->departamento->nombre }}
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Nombre del Colegio</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ Str::upper($nameSchool) }}</dd>
+                            {{ Str::upper($school->nombre) }}</dd>
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">

@@ -15,8 +15,7 @@ class SummaryTemplate extends Component
   public $distritNac;
   public $districtAddress;
   public $typeAddress;
-  public $districtSchool;
-  public $nameSchool;
+  public $school;
   public $sede;
   public $programAcademic;
   public $modality;
@@ -40,8 +39,7 @@ class SummaryTemplate extends Component
     $this->distritNac = $this->applicant->distritoNac->nombre;
     $this->districtAddress = $this->applicant->distritoRes->nombre;
     $this->typeAddress = $this->applicant->tipodireccion->descripcion;
-    $this->districtSchool = $this->applicant->colegio->distrito;
-    $this->nameSchool = $this->applicant->colegio->nombre;
+    $this->school = $this->applicant->colegio;
     $this->sede = $this->applicant->sede->nombre;
     $this->programAcademic = $this->applicant->programaAcademico->nombre;
     $this->modality = $this->applicant->modalidad->descripcion;

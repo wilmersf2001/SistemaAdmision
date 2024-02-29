@@ -416,8 +416,6 @@
                                                         class="w-full py-2 text-xs font-medium text-gray-900 rounded dark:text-gray-900">
                                                         {{ $school->nombre }}
                                                     </p>
-                                                    <span
-                                                        class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $school->distrito }}</span>
                                                 </div>
                                             </li>
                                         @endforeach

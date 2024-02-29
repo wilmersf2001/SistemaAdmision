@@ -14,10 +14,9 @@ class Colegio extends Model
     protected $fillable = [
         'nombre',
         'centro_poblado',
-        'distrito',
         'tipo',
         'ubigeo',
-        'departamento_id'
+        'distrito_id'
     ];
 
     public function postulantes()
@@ -25,8 +24,8 @@ class Colegio extends Model
         return $this->hasMany(Postulante::class, 'colegio_id');
     }
 
-    public function departamento()
+    public function distrito()
     {
-        return $this->belongsTo(Departamento::class, 'departamento_id');
+        return $this->belongsTo(Distrito::class, 'distrito_id');
     }
 }

@@ -151,10 +151,7 @@ class Applicant extends Component
   private function searchSchools()
   {
     if ($this->selectedDistrictOriginSchoolId) {
-      $ubigeoDistrito = Distrito::find($this->selectedDistrictOriginSchoolId)->ubigeo;
-
-      $query = Colegio::where('nombre', 'like', '%' . $this->searchSchoolName . '%')
-        ->where('ubigeo', $ubigeoDistrito);
+      $query = Distrito::find($this->selectedDistrictOriginSchoolId)->colegios()->where('nombre', 'like', '%' . $this->searchSchoolName . '%');
 
       if (!$this->isModalidadTituladoTraslado()) {
         $query->where('tipo', $this->typeSchool);

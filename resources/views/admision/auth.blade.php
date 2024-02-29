@@ -111,7 +111,7 @@
         <div class="screen">
             <div class="screen__content ring-1 ring-gray-200">
                 <form class="login" method="POST" action="{{ route('login') }}">
-                    <h3 class="text-3xl font-semibold leading-10 text-gray-900">SISTEMA ACADÉMICO</h3>
+                    <h3 class="text-3xl font-semibold leading-10 text-gray-900">SISTEMA ADMISIÓN</h3>
                     @csrf
                     <div class="login__field mt-4">
                         <input type="text" name="usuario" required id="email"

@@ -26,4 +26,9 @@ class Distrito extends Model
     {
         return $this->hasMany(Postulante::class, 'distrito_id');
     }
+
+    public function colegios()
+    {
+        return $this->hasMany(Colegio::class, 'distrito_id');
+    }
 }

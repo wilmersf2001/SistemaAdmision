@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_usuario', function (Blueprint $table) {
+        Schema::create('tb_proceso', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('usuario')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('numero', 10);
+            $table->string('descripcion', 100);
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->integer('estado')->default(0); // 1: activo, 0: inactivo
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_usuario');
+        Schema::dropIfExists('tb_proceso');
     }
 };
