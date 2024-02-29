@@ -15,6 +15,7 @@
 <body style="min-height: 100vh; position: relative;">
     @php
         $processNumber = \App\Models\Proceso::getProcessNumber();
+        $processOpen = \App\Models\Proceso::processOpen();
     @endphp
     <div class="min-h-full">
         <nav class="bg-gray-800">
@@ -31,17 +32,32 @@
                         </div>
                     </div>
                     <div class="flex items-baseline">
-                        @if ($processNumber)
+                        @if ($processOpen)
                             <p class="text-white flex-col hidden lg:grid mr-4">PROCESO DE ADMISIÓN</p>
                             <h4 class="text-yellow-300 font-semibold text-2xl">
                                 {{ $processNumber }}</h4>
+                        @else
+                            <div class="mt-2 flex items-center">
+                                <a href="{{ route('login') }}" class="flex items-center justify-center">
+                                    <div
+                                        class="flex items-center justify-center w-6 h-6 bg-yellow-100 rounded-full lg:h-6 lg:w-6 shrink-0">
+                                        <div class="rounded-full bg-yellow-100 text-yellow-600">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="currentColor" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         @endif
                     </div>
                 </div>
             </div>
         </nav>
         <main class="min-h-full pt-8 mx-auto max-w-7xl px-6 lg:px-8">
-            @if ($processNumber || Route::currentRouteName() === 'login')
+            @if ($processOpen || Route::currentRouteName() === 'login')
                 @yield('content')
             @else
                 <section class="bg-white rounded-3xl">

@@ -21,6 +21,11 @@ class Constants
   public const RUTA_FOTOS_VALIDAS = [Constants::RUTA_FOTO_CARNET_VALIDA, Constants::RUTA_DNI_ANVERSO_VALIDA, Constants::RUTA_DNI_REVERSO_VALIDA];
   public const RUTA_FOTOS_OBSERVADAS = [Constants::RUTA_FOTO_CARNET_OBSERVADO, Constants::RUTA_DNI_ANVERSO_OBSERVADO, Constants::RUTA_DNI_REVERSO_OBSERVADO];
 
+  //RUTAS DE ARCHIVOS BACKUP
+  public const RUTA_FOTO_CARNET_VALIDA_BACKUP = 'backup_archivos_validos/foto_carnet/';
+  public const RUTA_DNI_ANVERSO_VALIDA_BACKUP = 'backup_archivos_validos/dni_anverso/';
+  public const RUTA_DNI_REVERSO_VALIDA_BACKUP = 'backup_archivos_validos/dni_reverso/';
+
   //ESTADOS DE POSTULANTES
   public const ESTADO_INSCRITO = '1';
   public const ESTADO_OBSERVADO = '2';

@@ -15,50 +15,50 @@ use Illuminate\Support\Facades\Cache;
 class DataService
 {
 
-    public function getDepartaments()
+    public function getDepartments()
     {
-        return Cache::remember('departments', 60, function () {
+        return Cache::remember('departments', 3600, function () {
             return Departamento::all();
         });
     }
     public function getProvinces()
     {
-        return Cache::remember('provinces', 60, function () {
+        return Cache::remember('provinces', 3600, function () {
             return Provincia::all();
         });
     }
 
     public function getDistricts()
     {
-        return Cache::remember('districts', 60, function () {
+        return Cache::remember('districts', 3600, function () {
             return Distrito::all();
         });
     }
 
     public function getCountries()
     {
-        return Cache::remember('countries', 60, function () {
+        return Cache::remember('countries', 3600, function () {
             return Pais::all();
         });
     }
 
     public function getModalities()
     {
-        return Cache::remember('modalities', 60, function () {
+        return Cache::remember('modalities', 3600, function () {
             return Modalidad::all();
         });
     }
 
     public function getAcademicsProgram()
     {
-        return Cache::remember('academicsProgram', 60, function () {
+        return Cache::remember('academicsProgram', 3600, function () {
             return ProgramaAcademico::all();
         });
     }
 
     public function getSedes()
     {
-        return Cache::remember('sedes', 60, function () {
+        return Cache::remember('sedes', 3600, function () {
             return Sede::all();
         });
     }

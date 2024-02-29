@@ -58,7 +58,7 @@ class UpdateApplicantData extends Component
 
     public function mount(DataService $dataService)
     {
-        $this->departments = $dataService->getDepartaments();
+        $this->departments = $dataService->getDepartments();
         $this->districtsReside = $dataService->getDistricts();
         $this->provincesReside = $dataService->getProvinces();
         $this->districtsBirth = $dataService->getDistricts();

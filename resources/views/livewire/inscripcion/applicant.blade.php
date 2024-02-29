@@ -567,7 +567,8 @@
                         </li>
                         <li class="flex gap-x-3">
                             <x-icons.check />
-                            Enfoca correctamente tu rostro (no utilizar lentes ni cualquier otro tipo de accesorios) y
+                            Enfoca correctamente tu rostro (no utilizar lentes ni cualquier otro tipo de accesorios)
+                            y
                             utiliza fondo blanco.
                         </li>
                         <li class="flex gap-x-3">
@@ -580,7 +581,8 @@
                         </li>
                     </ul>
                     <div class="mt-6 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">CONSIDERACIONES PARA DNI
+                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">CONSIDERACIONES PARA
+                            DNI
                         </h4>
                         <div class="h-px flex-auto bg-gray-100"></div>
                     </div>

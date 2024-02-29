@@ -10,7 +10,7 @@ use App\Http\Requests\View\Message\ValidateApplicant;
 use App\Services\ApiReniecService;
 use App\Models\DistribucionVacante;
 use App\Services\FormDataService;
-use App\Services\LocationService;
+use App\Services\DataService;
 use App\Utils\UtilFunction;
 use Livewire\WithFileUploads;
 use App\Models\Postulante;
@@ -63,6 +63,7 @@ class Applicant extends Component
   public $isAgeMinor = false;
   public $disableInputApplicant = 0;
   public $disableInputApoderado = 0;
+  public $applicantFilesExisteBackup = false;
   protected $messages = ValidateApplicant::MESSAGES_ERROR;
 
   protected function rules()
@@ -76,7 +77,7 @@ class Applicant extends Component
     $this->validateOnly($propertyName);
   }
 
-  public function mount(Postulante $responseApiReniec, Banco $bank, $typeSchool, LocationService $locationService, FormDataService $formDataService)
+  public function mount(Postulante $responseApiReniec, Banco $bank, $typeSchool, DataService $locationService, FormDataService $formDataService)
   {
     $this->applicant = $responseApiReniec;
     $this->bank = $bank;
@@ -92,6 +93,7 @@ class Applicant extends Component
     $this->minimumYear = UtilFunction::getMinimumYearByModalidad($this->applicant->modalidad_id);
     $this->universities = UtilFunction::getUniversitiesByModality($this->applicant->modalidad_id, $this->typeSchool, $formDataService);
     $this->numberProcess = Proceso::getProcessNumber();
+    $this->applicantFilesExisteBackup = UtilFunction::applicantFilesExisteBackup($this->applicant->num_documento);
     if ($this->bank->tipo_doc_depo == Constants::TIPO_DOCUMENTO_CARNET_EXTRANJERIA) {
       $this->searchSchoolName = $typeSchool == 1 ? "OTROS COLEGIOS NACIONALES" : "OTROS COLEGIOS PARTICULARES";
       $this->LocationOutsideCountry(26);
@@ -127,9 +129,9 @@ class Applicant extends Component
     $this->validateOnly('applicant.num_documento_apoderado');
     $apoderado = $apiReniecService->getApoderadoDataByDni($this->applicant->num_documento_apoderado);
     if (count($apoderado) > 0) {
-      $this->applicant->nombres_apoderado = $apoderado['nombres'];
-      $this->applicant->ap_paterno_apoderado = $apoderado['apellidoPaterno'];
-      $this->applicant->ap_materno_apoderado = $apoderado['apellidoMaterno'];
+      $this->applicant->nombres_apoderado = $apoderado['prenombres'];
+      $this->applicant->ap_paterno_apoderado = $apoderado['apPrimer'];
+      $this->applicant->ap_materno_apoderado = $apoderado['apSegundo'];
       $this->applicant->num_documento_apoderado = $apoderado['dni'];
       $this->disableInputApoderado = 1;
       $this->resetErrorBag('applicant.nombres_apoderado');

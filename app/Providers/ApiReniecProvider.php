@@ -14,7 +14,7 @@ class ApiReniecProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(ApiReniecService::class, function ($app) {
-            return new ApiReniecService(env('API_RENIEC_TOKEN'));
+            return new ApiReniecService(env('DNI_USER'), env('RUC_USER'));
         });
     }
 

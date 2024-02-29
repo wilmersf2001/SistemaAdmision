@@ -116,10 +116,11 @@ class Postulante extends Model
     public static function fromArrayReniec(array $data)
     {
         $postulante = new Postulante();
-        $postulante->nombres = $data['nombres'];
-        $postulante->ap_paterno = $data['apellidoPaterno'];
-        $postulante->ap_materno = $data['apellidoMaterno'];
+        $postulante->nombres = $data['prenombres'];
+        $postulante->ap_paterno = $data['apPrimer'];
+        $postulante->ap_materno = $data['apSegundo'];
         $postulante->num_documento = $data['dni'];
+        $postulante->direccion = $data['direccion'];
         return $postulante;
     }
 }

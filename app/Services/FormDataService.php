@@ -13,14 +13,14 @@ class FormDataService
 {
   public function getAdressType()
   {
-    return Cache::remember("adressType", 60, function () {
+    return Cache::remember("adressType", 3600, function () {
       return TipoDireccion::all();
     });
   }
 
   public function getGeneros()
   {
-    return Cache::remember("generos", 60, function () {
+    return Cache::remember("generos", 3600, function () {
       return Genero::all();
     });
   }
