@@ -312,7 +312,7 @@
                                                     {{ $school->nombre }}
                                                 </p>
                                                 <span
-                                                    class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $school->distrito }}</span>
+                                                    class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $school->distrito->nombre }}</span>
                                             </div>
                                         </li>
                                     @endforeach
@@ -345,9 +345,7 @@
                             <x-input-error for="applicant.telefono_ap" />
                         </label>
                     </div>
-                    @if (
-                        $universities &&
-                            auth()->user()->can('usuarios'))
+                    @if ($universities && auth()->user()->can('usuarios'))
                         <div class="grid md:grid-cols-3 md:gap-6">
                             <label class="block">
                                 <span class="block text-sm font-medium text-slate-700">

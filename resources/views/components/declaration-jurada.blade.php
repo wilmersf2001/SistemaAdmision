@@ -7,7 +7,7 @@
         <div class="relative flex mt-6">
             <div class="flex h-6 items-center">
                 <input id="accordance" name="accordance" type="checkbox" wire:model="accordance"
-                    class="h-4 w-4 rounded text-indigo-600 focus:ring-indigo-600">
+                    class="h-4 w-4 rounded text-indigo-600 focus:ring-indigo-600 cursor-pointer">
             </div>
             <div class="text-sm">
                 <label for="accordance" class="font-medium text-gray-900 pl-2">Declaro bajo juramento

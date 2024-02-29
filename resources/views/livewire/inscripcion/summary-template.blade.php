@@ -142,11 +142,11 @@
             <dl class="grid grid-cols-1 gap-x-6 gap-y-4 py-4 px-6">
                 <div class="pt-2">
                     <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt class="text-sm font-medium leading-6 text-gray-900">Distrito del Colegio</dt>
+                        <dt class="text-sm font-medium leading-6 text-gray-900">Ubicación de Colegio</dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {{ $school->distrito->nombre }} |
+                            {{ $school->distrito->provincia->departamento->nombre }} |
                             {{ $school->distrito->provincia->nombre }} |
-                            {{ $school->distrito->provincia->departamento->nombre }}
+                            {{ $school->distrito->nombre }}
                     </div>
                 </div>
                 <div class="border-t border-gray-200 pt-4">

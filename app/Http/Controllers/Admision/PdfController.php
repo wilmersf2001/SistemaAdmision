@@ -11,6 +11,7 @@ use App\Utils\UtilFunction;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Utils\Constants;
+use Carbon\Carbon;
 
 class PdfController extends Controller
 {
@@ -79,6 +80,7 @@ class PdfController extends Controller
     {
         $fechaDesde = $request->fecha_desde;
         $fechaHasta = $request->fecha_hasta;
+        $fechaHasta = Carbon::parse($fechaHasta)->addDay();
 
         $resultadoInscritos = Postulante::selectRaw('COUNT(*) as conteo, tb_programa_academico.nombre as programa')
             ->join('tb_programa_academico', 'programa_academico_id', '=', 'tb_programa_academico.id')
@@ -101,6 +103,7 @@ class PdfController extends Controller
     {
         $fechaDesde = $request->fecha_desde;
         $fechaHasta = $request->fecha_hasta;
+        $fechaHasta = Carbon::parse($fechaHasta)->addDay();
 
         $resultadoInscritos = Postulante::selectRaw('COUNT(*) as conteo, DATE(fecha_inscripcion) as fecha_inscripcion')
             ->whereBetween('fecha_inscripcion', [$fechaDesde, $fechaHasta])

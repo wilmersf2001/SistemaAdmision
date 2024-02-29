@@ -6,6 +6,7 @@ use App\Models\Postulante;
 use Livewire\Component;
 use App\Models\Proceso;
 use App\Models\ProgramaAcademico;
+use Carbon\Carbon;
 
 class Inscritos extends Component
 {
@@ -43,9 +44,11 @@ class Inscritos extends Component
 
     public function render()
     {
+        $fechaHasta = Carbon::parse($this->fechaHasta)->addDay();
+
         $postulantesInscritos = Postulante::selectRaw('COUNT(*) as conteo, tb_programa_academico.nombre as programa')
             ->join('tb_programa_academico', 'programa_academico_id', '=', 'tb_programa_academico.id')
-            ->whereBetween('fecha_inscripcion', [$this->fechaDesde, $this->fechaHasta])
+            ->whereBetween('fecha_inscripcion', [$this->fechaDesde, $fechaHasta])
             ->groupBy('programa_academico_id', 'tb_programa_academico.nombre')
             ->get();
 

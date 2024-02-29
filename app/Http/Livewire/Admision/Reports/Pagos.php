@@ -43,17 +43,14 @@ class Pagos extends Component
 
     public function render()
     {
-        if ($this->fechaDesde < Proceso::getStartDate()) {
-            $this->fechaDesde = Proceso::getStartDate();
-        }
+        $this->fechaDesde = max($this->fechaDesde, Proceso::getStartDate());
 
-        $pagosPagination = Banco::whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
-            ->orderBy('fecha', 'desc')
-            ->paginate(10);
+        $pagosQuery = Banco::whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
+            ->orderBy('fecha', 'desc');
 
-        $pagosTotal = Banco::whereBetween('fecha', [$this->fechaDesde, $this->fechaHasta])
-            ->orderBy('fecha', 'desc')
-            ->get();
+        $pagosPagination = $pagosQuery->paginate(10);
+
+        $pagosTotal = $pagosQuery->get();
 
         $this->totalInsNacional = $pagosTotal->where('cod_concepto', '00346')->count();
         $this->totalInsParticular = $pagosTotal->where('cod_concepto', '00345')->count();
