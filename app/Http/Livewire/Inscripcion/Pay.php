@@ -4,8 +4,9 @@ namespace App\Http\Livewire\Inscripcion;
 
 use Livewire\Component;
 use App\Http\Requests\View\Message\ValidatePayment;
-use App\Models\Modalidad;
 use App\Services\FormDataService;
+use App\Utils\UtilFunction;
+use Dflydev\DotAccessData\Util;
 
 class Pay extends Component
 {

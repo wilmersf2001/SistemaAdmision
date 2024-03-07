@@ -5,6 +5,7 @@ namespace App\Services;
 use GuzzleHttp\Client;
 use App\Models\Postulante;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Request;
 
 class ApiReniecService
 {
@@ -100,5 +101,42 @@ class ApiReniecService
     } catch (RequestException $e) {
       return [];
     }
+  }
+
+  public function updateCredentials($nuDni, $credencialAnterior, $credencialNueva)
+  {
+    $client = new Client();
+    $response = $client->post("https://ws5.pide.gob.pe/Rest/Reniec/ActualizarCredencial?out=json", [
+      'headers' => [
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json'
+      ],
+      'json' => [
+        'PIDE' => [
+          'credencialAnterior' => $credencialAnterior,
+          'credencialNueva' => $credencialNueva,
+          'nuDni' => $nuDni,
+          'nuRuc' => $this->rucUser,
+        ],
+      ],
+    ]);
+
+    $statusCode = $response->getStatusCode();
+
+    if ($statusCode === 200) {
+      $data = $response->getBody()->getContents();
+      $response = json_decode($data, true);
+
+      if (isset($response['actualizarcredencialResponse']['return']['coResultado'])) {
+        $coResultado = $response['actualizarcredencialResponse']['return']['coResultado'];
+        $message = $response['actualizarcredencialResponse']['return']['deResultado'];
+        if ($coResultado == '0000') {
+          return $message;
+        }
+        return $message;
+      }
+      return 'Error al actualizar credenciales';
+    }
+    return 'Error al actualizar credenciales';
   }
 }

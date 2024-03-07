@@ -238,4 +238,21 @@ class  UtilFunction
     }
     return false;
   }
+
+  public static function copyFileValidFolder($nameFile)
+  {
+    $nameFile = $nameFile . '.jpg';
+
+    $rutaOrigenFotoCarnet = 'public/backup_archivos_validos/foto_carnet/' . $nameFile;
+    $rutaOrigenDniAnverso = 'public/backup_archivos_validos/dni_anverso/A-' . $nameFile;
+    $rutaOrigenDniReverso = 'public/backup_archivos_validos/dni_reverso/R-' . $nameFile;
+
+    $rutaDestinoFotoCarnet = 'public/archivos_validos/foto_carnet/' . $nameFile;
+    $rutaDestinoDniAnverso = 'public/archivos_validos/dni_anverso/A-' . $nameFile;
+    $rutaDestinoDniReverso = 'public/archivos_validos/dni_reverso/R-' . $nameFile;
+
+    Storage::copy($rutaOrigenFotoCarnet, $rutaDestinoFotoCarnet);
+    Storage::copy($rutaOrigenDniAnverso, $rutaDestinoDniAnverso);
+    Storage::copy($rutaOrigenDniReverso, $rutaDestinoDniReverso);
+  }
 }

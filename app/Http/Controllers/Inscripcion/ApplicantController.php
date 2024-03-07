@@ -75,10 +75,13 @@ class ApplicantController extends Controller
             'estado_postulante_id' => Constants::ESTADO_INSCRITO,
             'ingreso' => null,
         ]);
-
-        $this->uploadImage($request->file('profilePhoto'), $request->num_documento, Constants::RUTA_FOTO_CARNET_INSCRIPTO);
-        $this->uploadImage($request->file('reverseDniPhoto'), 'R-' . $request->num_documento, Constants::RUTA_DNI_REVERSO_INSCRIPTO);
-        $this->uploadImage($request->file('frontDniPhoto'), 'A-' . $request->num_documento, Constants::RUTA_DNI_ANVERSO_INSCRIPTO);
+        if ($request->hasFile('profilePhoto') && $request->hasFile('reverseDniPhoto') && $request->hasFile('frontDniPhoto')) {
+            $this->uploadImage($request->file('profilePhoto'), $request->num_documento, Constants::RUTA_FOTO_CARNET_INSCRIPTO);
+            $this->uploadImage($request->file('reverseDniPhoto'), 'R-' . $request->num_documento, Constants::RUTA_DNI_REVERSO_INSCRIPTO);
+            $this->uploadImage($request->file('frontDniPhoto'), 'A-' . $request->num_documento, Constants::RUTA_DNI_ANVERSO_INSCRIPTO);
+        } else {
+            UtilFunction::copyFileValidFolder($request->num_documento);
+        }
 
         UtilFunction::saveQr($request->all());
 

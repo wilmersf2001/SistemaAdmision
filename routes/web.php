@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admision\VacancyDistributionController;
 use App\Http\Controllers\Inscripcion\FichaInscripcionController;
+use App\Http\Controllers\Admision\CredentialsReniecController;
 use App\Http\Controllers\Inscripcion\ApplicantController;
 use App\Http\Controllers\Admision\ProcessController;
 use App\Http\Controllers\Admision\FileTxtController;
@@ -59,18 +60,21 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	Route::group(['middleware' => 'role:admin'], function () {
-		/* Route::get("usuarios", [HomeController::class, "user"])->name('home.user'); */
+		Route::get("usuarios", [HomeController::class, "user"])->name('home.user');
 		Route::get("carnet-pendiente-entrega", [HomeController::class, "carnetPendienteEntrega"])->name('home.carnetPendienteEntrega');
 		Route::get("carnet-entregado", [HomeController::class, "carnetEntregado"])->name('home.carnetEntregado');
 		Route::get("huella-digital", [HomeController::class, "huellaDigital"])->name('home.huellaDigital');
 		Route::post('user-store', [UserController::class, 'store'])->name('user.store');
 		Route::put("user-assign-permission/{user}", [UserController::class, "assignPermission"])->name('user.assignPermission');
 		Route::put('user-update/{user}', [UserController::class, 'update'])->name('user.update');
-		/* Route::delete("user-destroy/{user}", [UserController::class, "destroy"])->name('user.destroy'); */
+		Route::delete("user-destroy/{user}", [UserController::class, "destroy"])->name('user.destroy');
 		Route::get("apertura-proceso", [HomeController::class, "processOpening"])->name('home.processOpening');
 		Route::post("open-process", [ProcessController::class, "store"])->name('process.store');
 		Route::put("update-process/{process}", [ProcessController::class, "update"])->name('process.update');
 		Route::delete("process-destroy/{process}", [ProcessController::class, "destroy"])->name('process.destroy');
+		//ACTULIZAR CREDECIALES
+		Route::get("actualizar-credenciales", [HomeController::class, "updateCredentials"])->name('home.updateCredentials');
+		Route::post("update-credentials", [CredentialsReniecController::class, "updateCredentials"])->name('credentials.updateCredentials');
 		//REPORTES
 		Route::get("reporte-pagos", [HomeController::class, "reportePagos"])->name('home.reportePagos');
 		Route::post('pagos-reporte', [PdfController::class, "reportePagos"])->name('pdf.reportePagos');
@@ -86,9 +90,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get("archivos-txt", [HomeController::class, "uploadedFiles"])->name('home.uploadedFiles');
 		Route::post("store-txt-file", [FileTxtController::class, "store"])->name('fileTxt.store');
 	});
-
-	Route::get("usuarios", [HomeController::class, "user"])->name('home.user');
-	Route::delete("user-destroy/{user}", [UserController::class, "destroy"])->name('user.destroy');
 
 	Route::get('/restringido', [HomeController::class, "restricted"])->name('restricted');
 	Route::post('/logout', [AuthController::class, "logout"])->name('auth.logout');

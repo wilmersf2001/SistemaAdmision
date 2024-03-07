@@ -44,12 +44,15 @@ class StoreApplicantRequest extends FormRequest
       'anno_egreso' => 'required|numeric|digits:4',
       'colegio_id' => 'required|numeric',
       'num_veces_otro' => 'required|numeric|integer|gte:0',
-      'profilePhoto' => 'required|mimes:jpeg|max:1024',
-      'reverseDniPhoto' => 'required|mimes:jpeg|max:1024',
-      'frontDniPhoto' => 'required|mimes:jpeg|max:1024',
       'accordance' => 'required|accepted',
-      'banco_id' => 'required|numeric|'
+      'banco_id' => 'required|numeric|',
     ];
+
+    if ($this->hasFile('profilePhoto') && $this->hasFile('reverseDniPhoto') && $this->hasFile('frontDniPhoto')) {
+      $rules['profilePhoto'] = 'required|mimes:jpeg|max:1024';
+      $rules['reverseDniPhoto'] = 'required|mimes:jpeg|max:1024';
+      $rules['frontDniPhoto'] = 'required|mimes:jpeg|max:1024';
+    }
 
     if ($this->filled('universidad_id')) {
       $rules['universidad_id'] = 'required|numeric';

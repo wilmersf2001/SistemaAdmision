@@ -118,6 +118,11 @@ class HomeController extends Controller
         return view('admision.reports.inscritos');
     }
 
+    public function updateCredentials()
+    {
+        return view('admision.update-credentials');
+    }
+
     public function restricted()
     {
         $fullName = Auth::user()->nombre;

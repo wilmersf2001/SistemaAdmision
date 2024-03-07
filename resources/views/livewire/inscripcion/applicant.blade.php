@@ -543,89 +543,97 @@
             </div>
         </div>
 
-        <div class="{{ $currentStep == 3 ? 'animate-slide-in-right' : 'hidden' }}">
+        @if ($currentStep == 3 && $applicantFilesExisteBackup)
+            @php
+                $currentStep = 4;
+            @endphp
+        @else
+            <div class="{{ $currentStep == 3 ? 'animate-slide-in-right' : 'hidden' }}">
 
-            <div class="mt-4 mb-7 flex items-center gap-x-4 bg-sky-200 px-4 py-2 rounded-full">
-                <div class="flex items-center text-sky-900">
-                    <x-icons.folder />
-                    <h4 class="flex-none text-base font-medium leading-none text-sky-900 ml-2">Archivos Requeridos
-                    </h4>
-                </div>
-            </div>
-
-            <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 xl:grid-cols-3">
-                <div class="max-w-2xl">
-                    <div class="flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">CONSIDERACIONES PARA
-                            FOTOGRAFÍA</h4>
-                        <div class="h-px flex-auto bg-gray-100"></div>
-                    </div>
-                    <ul role="list" class="mt-4 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                            <x-icons.check />
-                            Iluminación uniforme y suave, evitando sombras fuertes en el rostro.
-                        </li>
-                        <li class="flex gap-x-3">
-                            <x-icons.check />
-                            Enfoca correctamente tu rostro (no utilizar lentes ni cualquier otro tipo de accesorios)
-                            y
-                            utiliza fondo blanco.
-                        </li>
-                        <li class="flex gap-x-3">
-                            <x-icons.check />
-                            Ropa apropiada, evita estampados llamativos y bividis.
-                        </li>
-                        <li class="flex gap-x-3">
-                            <x-icons.check />
-                            Expresión facial tranquila y neutral, sin sonreír ni fruncir el ceño.
-                        </li>
-                    </ul>
-                    <div class="mt-6 flex items-center gap-x-4">
-                        <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">CONSIDERACIONES PARA
-                            DNI
+                <div class="mt-4 mb-7 flex items-center gap-x-4 bg-sky-200 px-4 py-2 rounded-full">
+                    <div class="flex items-center text-sky-900">
+                        <x-icons.folder />
+                        <h4 class="flex-none text-base font-medium leading-none text-sky-900 ml-2">Archivos Requeridos
                         </h4>
-                        <div class="h-px flex-auto bg-gray-100"></div>
                     </div>
-                    <ul role="list" class="mt-4 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
-                        <li class="flex gap-x-3">
-                            <x-icons.check />
-                            Asegúrate que la imagen esté completamente legible y sin reflejos para evitar
-                            problemas al verificar la información.
-                        </li>
-                    </ul>
                 </div>
-                <div class="grid gap-x-8 gap-y-12 sm:grid-cols-1 sm:gap-y-16 xl:col-span-2">
-                    <div>
-                        <div class="grid md:grid-cols-1 md:gap-6">
-                            <x-input.file span="Foto Carnet Postulante" model="profilePhoto"
-                                imageId="preview-profilePhoto" alt="FOTO CARNET" src="images/foto-carnet.jpg"
-                                click="$set('profilePhoto', null)" inputId="fileInput-profilePhoto" />
-                        </div>
 
-                        <div class="grid md:grid-cols-2 md:gap-6 mb-10">
-                            <x-input.file span="DNI Parte Anverso" model="frontDniPhoto"
-                                imageId="preview-frontDniPhoto" alt="DNI ANVERSO" src="images/dni-anverso.png"
-                                click="$set('frontDniPhoto', null)" inputId="fileInput-frontDniPhoto" w="w-56"
-                                h="h-40" />
-                            <x-input.file span="DNI Parte Reverso" model="reverseDniPhoto"
-                                imageId="preview-reverseDniPhoto" alt="DNI REVERSO" src="images/dni-reverso.png"
-                                click="$set('reverseDniPhoto', null)" inputId="fileInput-reverseDniPhoto" w="w-56"
-                                h="h-40" />
+                <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 xl:grid-cols-3">
+                    <div class="max-w-2xl">
+                        <div class="flex items-center gap-x-4">
+                            <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">CONSIDERACIONES PARA
+                                FOTOGRAFÍA</h4>
+                            <div class="h-px flex-auto bg-gray-100"></div>
                         </div>
-                        <div class="flex w-full justify-end">
-                            <button type="button" wire:click="previousStep"
-                                class="cursor-pointer mt-4 mr-4 text-gray-900 bg-white hover:bg-gray-100 shadow-md focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                Atrás
-                            </button>
-                            <button type="button" wire:click="nextStep"
-                                class="cursor-pointer mt-4 text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                Siguiente
-                            </button>
+                        <ul role="list" class="mt-4 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
+                            <li class="flex gap-x-3">
+                                <x-icons.check />
+                                Iluminación uniforme y suave, evitando sombras fuertes en el rostro.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <x-icons.check />
+                                Enfoca correctamente tu rostro (no utilizar lentes ni cualquier otro tipo de accesorios)
+                                y
+                                utiliza fondo blanco.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <x-icons.check />
+                                Ropa apropiada, evita estampados llamativos y bividis.
+                            </li>
+                            <li class="flex gap-x-3">
+                                <x-icons.check />
+                                Expresión facial tranquila y neutral, sin sonreír ni fruncir el ceño.
+                            </li>
+                        </ul>
+                        <div class="mt-6 flex items-center gap-x-4">
+                            <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">CONSIDERACIONES PARA
+                                DNI
+                            </h4>
+                            <div class="h-px flex-auto bg-gray-100"></div>
+                        </div>
+                        <ul role="list" class="mt-4 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600">
+                            <li class="flex gap-x-3">
+                                <x-icons.check />
+                                Asegúrate que la imagen esté completamente legible y sin reflejos para evitar
+                                problemas al verificar la información.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid gap-x-8 gap-y-12 sm:grid-cols-1 sm:gap-y-16 xl:col-span-2">
+                        <div>
+                            <div class="grid md:grid-cols-1 md:gap-6">
+                                <x-input.file span="Foto Carnet Postulante" model="profilePhoto"
+                                    imageId="preview-profilePhoto" alt="FOTO CARNET" src="images/foto-carnet.jpg"
+                                    click="$set('profilePhoto', null)" inputId="fileInput-profilePhoto" />
+                            </div>
+
+                            <div class="grid md:grid-cols-2 md:gap-6 mb-10">
+                                <x-input.file span="DNI Parte Anverso" model="frontDniPhoto"
+                                    imageId="preview-frontDniPhoto" alt="DNI ANVERSO" src="images/dni-anverso.png"
+                                    click="$set('frontDniPhoto', null)" inputId="fileInput-frontDniPhoto" w="w-56"
+                                    h="h-40" />
+                                <x-input.file span="DNI Parte Reverso" model="reverseDniPhoto"
+                                    imageId="preview-reverseDniPhoto" alt="DNI REVERSO" src="images/dni-reverso.png"
+                                    click="$set('reverseDniPhoto', null)" inputId="fileInput-reverseDniPhoto" w="w-56"
+                                    h="h-40" />
+                            </div>
+
+                            <div class="flex w-full justify-end">
+                                <button type="button" wire:click="previousStep"
+                                    class="cursor-pointer mt-4 mr-4 text-gray-900 bg-white hover:bg-gray-100 shadow-md focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Atrás
+                                </button>
+                                <button type="button" wire:click="nextStep"
+                                    class="cursor-pointer mt-4 text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    Siguiente
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+
 
         @if ($currentStep > 3)
             @livewire('inscripcion.summary-template', ['applicant' => $applicant, 'tipo_documento' => $bank->tipo_doc_depo])
