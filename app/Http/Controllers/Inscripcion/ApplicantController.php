@@ -133,14 +133,14 @@ class ApplicantController extends Controller
 
     public function getPostulanteByDni($clave)
     {
-        $dni = '75085350'; /* 77207492   75085350*/
-        $postulanteExiste = Postulante::where('num_documento', $dni)->exists();
+        $dniDecodificado = base64_decode($clave);
+        $postulanteExiste = Postulante::where('num_documento', $dniDecodificado)->exists();
 
         if ($postulanteExiste) {
-            $postulante = Postulante::where('num_documento', $dni)->first();
+            $postulante = Postulante::where('num_documento', $dniDecodificado)->first();
 
             if (in_array($postulante->estado_postulante_id, Constants::ESTADO_POSTULANTE_QR)) {
-                return view('inscripcion.informacion-postulante-dni', compact('postulante'));
+                return view('inscripcion.informacion-postulante-dni', compact('postulante', 'dniDecodificado'));
             }
         }
 

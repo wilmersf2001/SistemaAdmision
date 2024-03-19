@@ -113,7 +113,7 @@
                             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                 <dt class="text-sm font-medium leading-6 text-gray-900">Foto del Postulante</dt>
                                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                    <img src="{{ asset('storage/archivos_inscripcion/foto_carnet/75778722.jpg') }}"
+                                    <img src="{{ asset('storage/archivos_validos/foto_carnet/' . $dniDecodificado . '.jpg') }}"
                                         alt="UNPRG" width="180" height="180" />
                                 </dd>
                             </div>
