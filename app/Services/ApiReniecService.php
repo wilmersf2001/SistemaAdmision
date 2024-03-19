@@ -42,6 +42,9 @@ class ApiReniecService
       if ($statusCode === 200) {
         $data = $response->getBody()->getContents();
         $response = json_decode($data, true);
+        $setting->update([
+          'numeroConsultas' => $setting->numeroConsultas + 1,
+        ]);
 
         if (isset($response['consultarResponse']['return']['coResultado'])) {
           $coResultado = $response['consultarResponse']['return']['coResultado'];
@@ -84,6 +87,9 @@ class ApiReniecService
       if ($statusCode === 200) {
         $data = $response->getBody()->getContents();
         $response = json_decode($data, true);
+        $setting->update([
+          'numeroConsultas' => $setting->numeroConsultas + 1,
+        ]);
 
         if (isset($response['consultarResponse']['return']['coResultado'])) {
           $coResultado = $response['consultarResponse']['return']['coResultado'];
