@@ -227,7 +227,7 @@
                             a la verdad, me someto a las sanciones correspondientes (Art.23 del Reglamento del presente
                             Concurso de
                             Admisión).</li>
-                        <li> He culminado el 5to año de Educación Secundaria en el año 2023. </li>
+                        <li> He culminado mis estudios secundarios. </li>
                         <li>No tengo impedimento para participar en el Concurso de Admisión.</li>
                         <li>
                             De alcanzar una vacante, me comprometo a regularizar mi expediente en la fecha establecida
@@ -260,7 +260,7 @@
                 <div class="info-contacto">
                     <h5 class="items">DATOS DE POSTULACIÓN</h5>
                     <ul>
-                        <li><b>Sede:</b>{{ $sede }}</li>
+                        {{-- <li><b>Sede:</b>{{ $sede }}</li> --}}
                         <li><b>Modalidad:</b>{{ $modalidad }}</li>
                         <li><b>Programa Académico:</b>{{ $programaAcademico }}</li>
                         <li><b>N° Voucher:</b>{{ $postulante->num_voucher }}</li>
