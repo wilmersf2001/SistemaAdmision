@@ -636,7 +636,7 @@
 
 
         @if ($currentStep > 3)
-            @livewire('inscripcion.summary-template', ['applicant' => $applicant, 'tipo_documento' => $bank->tipo_doc_depo])
+            @livewire('inscripcion.summary-template', ['applicant' => $applicant, 'tipo_documento' => $bank->tipo_doc_depo, 'archivos_existen' => $applicantFilesExisteBackup, 'num_documento' => $bank->num_doc_depo])
 
             <x-declaration-jurada :formattedToday="$formattedToday" :numberProcess="$numberProcess" />
 

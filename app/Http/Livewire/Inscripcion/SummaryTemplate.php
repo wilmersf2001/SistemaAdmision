@@ -22,11 +22,15 @@ class SummaryTemplate extends Component
   public $tipo_documento;
   public $university;
   public $isAgeMinor;
+  public $archivos_existen;
+  public $num_documento;
 
-  public function mount(Postulante $applicant, int $tipo_documento)
+  public function mount(Postulante $applicant, int $tipo_documento, bool $archivos_existen = false, $num_documento = null)
   {
     $this->applicant = $applicant;
     $this->tipo_documento = $tipo_documento;
+    $this->archivos_existen = $archivos_existen;
+    $this->num_documento = $num_documento;
     if (in_array($this->applicant->modalidad_id, Constants::ESTADO_TITULADO_TRASLADO)) {
       $this->university = $this->applicant->universidad->nombre;
     }

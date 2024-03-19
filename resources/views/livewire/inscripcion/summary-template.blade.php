@@ -220,5 +220,36 @@
                 </div>
             </dl>
         </li>
+
+        @if ($archivos_existen)
+            <li class="rounded-2xl ring-1 ring-gray-200">
+                <div class="flex items-center gap-x-4 rounded-tl-2xl rounded-tr-2xl py-2 px-4 bg-sky-200">
+                    <h4 class="flex-none text-sm font-semibold leading-6 text-sky-900"> Archivos de Postulante</h4>
+                </div>
+                <dl class="grid grid-cols-1 gap-x-6 gap-y-4 py-4 px-6">
+                    <div class="pt-2">
+                        <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Foto Carnet</dt>
+                            <dd class="mt-1 flex justify-center">
+                                <img src="{{ asset('storage/backup_archivos_validos/foto_carnet/' . $num_documento . '.jpg') }}"
+                                    alt="UNPRG" width="150" height="150" />
+                            </dd>
+                        </div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4">
+                        <div>
+                            <dt class="text-sm font-medium leading-6 text-gray-900">DNI Reverso y Anverso</dt>
+                            <dd class="mt-1 flex justify-center">
+                                <img src="{{ asset('storage/backup_archivos_validos/dni_reverso/R-' . $num_documento . '.jpg') }}"
+                                    alt="UNPRG" width="180" />
+                                <img src="{{ asset('storage/backup_archivos_validos/dni_anverso/A-' . $num_documento . '.jpg') }}"
+                                    alt="UNPRG" width="180" />
+                            </dd>
+                        </div>
+                    </div>
+                </dl>
+            </li>
+        @endif
+
     </ul>
 </div>
