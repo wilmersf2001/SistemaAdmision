@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admision\VacancyDistributionController;
 use App\Http\Controllers\Inscripcion\FichaInscripcionController;
-use App\Http\Controllers\Admision\CredentialsReniecController;
+use App\Http\Controllers\Admision\UserReniecController;
 use App\Http\Controllers\Inscripcion\ApplicantController;
 use App\Http\Controllers\Admision\ProcessController;
 use App\Http\Controllers\Admision\FileTxtController;
@@ -39,6 +39,9 @@ Route::post('/rectificar-foto', [FichaInscripcionController::class, "storeRectif
 Route::get("/login", [AuthController::class, "showLoginForm"])->name('login');
 Route::post("/login", [AuthController::class, "authenticate"]);
 
+//VISTA CON QR POR DNI
+Route::get('/informacion-postulante/clv={clave}', [ApplicantController::class, "getPostulanteByDni"])->name('applicant.getPostulanteByDni');
+
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['middleware' => 'role:admin|validatePhotos'], function () {
@@ -73,8 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::put("update-process/{process}", [ProcessController::class, "update"])->name('process.update');
 		Route::delete("process-destroy/{process}", [ProcessController::class, "destroy"])->name('process.destroy');
 		//ACTULIZAR CREDECIALES
-		Route::get("actualizar-credenciales", [HomeController::class, "updateCredentials"])->name('home.updateCredentials');
-		Route::post("update-credentials", [CredentialsReniecController::class, "updateCredentials"])->name('credentials.updateCredentials');
+		Route::get("usuarios-reniec", [HomeController::class, "userReniec"])->name('home.userReniec');
+		Route::post("register-user-reniec", [UserReniecController::class, "store"])->name('userReniec.store');
+		Route::put("update-credentials/{setting}", [UserReniecController::class, "update"])->name('userReniec.update');
 		//REPORTES
 		Route::get("reporte-pagos", [HomeController::class, "reportePagos"])->name('home.reportePagos');
 		Route::post('pagos-reporte', [PdfController::class, "reportePagos"])->name('pdf.reportePagos');

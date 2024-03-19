@@ -18,6 +18,7 @@ use Livewire\Component;
 use App\Models\Departamento;
 use App\Models\Provincia;
 use App\Models\Distrito;
+use App\Models\Setting;
 use App\Models\Banco;
 use App\Models\Colegio;
 use App\Models\Proceso;
@@ -126,8 +127,9 @@ class Applicant extends Component
 
   public function getApoderadoDataByDni(ApiReniecService $apiReniecService)
   {
+    $userReniecAleatorio = Setting::inRandomOrder()->first();
     $this->validateOnly('applicant.num_documento_apoderado');
-    $apoderado = $apiReniecService->getApoderadoDataByDni($this->applicant->num_documento_apoderado);
+    $apoderado = $apiReniecService->getApoderadoDataByDni($userReniecAleatorio, $this->applicant->num_documento_apoderado);
     if (count($apoderado) > 0) {
       $this->applicant->nombres_apoderado = $apoderado['prenombres'];
       $this->applicant->ap_paterno_apoderado = $apoderado['apPrimer'];

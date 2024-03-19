@@ -3,23 +3,22 @@
 namespace App\Services;
 
 use GuzzleHttp\Client;
+use App\Models\Setting;
 use App\Models\Postulante;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 
 class ApiReniecService
 {
-  public $dniUser;
   public $rucUser;
 
-
-  public function __construct(string $dniUser, string $rucUser)
+  public function __construct(string $rucUser)
   {
-    $this->dniUser = $dniUser;
     $this->rucUser = $rucUser;
   }
 
-  public function getApplicantDataByDni(string $dni)
+  public function getApplicantDataByDni(Setting $setting, string $dni)
   {
     try {
       $client = new Client();
@@ -31,9 +30,9 @@ class ApiReniecService
         'json' => [
           'PIDE' => [
             'nuDniConsulta' => $dni,
-            'nuDniUsuario' => $this->dniUser,
+            'nuDniUsuario' => $setting->nuDniUsuario,
             'nuRucUsuario' => $this->rucUser,
-            'password' => '75085359',
+            'password' => Crypt::decryptString($setting->password),
           ],
         ],
       ]);
@@ -61,7 +60,7 @@ class ApiReniecService
     }
   }
 
-  public function getApoderadoDataByDni(string $dni)
+  public function getApoderadoDataByDni(Setting $setting, string $dni)
   {
     try {
       $client = new Client();
@@ -73,9 +72,9 @@ class ApiReniecService
         'json' => [
           'PIDE' => [
             'nuDniConsulta' => $dni,
-            'nuDniUsuario' => $this->dniUser,
+            'nuDniUsuario' => $setting->nuDniUsuario,
             'nuRucUsuario' => $this->rucUser,
-            'password' => '75085359',
+            'password' => Crypt::decryptString($setting->password),
           ],
         ],
       ]);
@@ -105,38 +104,42 @@ class ApiReniecService
 
   public function updateCredentials($nuDni, $credencialAnterior, $credencialNueva)
   {
-    $client = new Client();
-    $response = $client->post("https://ws5.pide.gob.pe/Rest/Reniec/ActualizarCredencial?out=json", [
-      'headers' => [
-        'Accept' => 'application/json',
-        'Content-Type' => 'application/json'
-      ],
-      'json' => [
-        'PIDE' => [
-          'credencialAnterior' => $credencialAnterior,
-          'credencialNueva' => $credencialNueva,
-          'nuDni' => $nuDni,
-          'nuRuc' => $this->rucUser,
+    try {
+      $client = new Client();
+      $response = $client->post("https://ws5.pide.gob.pe/Rest/Reniec/ActualizarCredencial?out=json", [
+        'headers' => [
+          'Accept' => 'application/json',
+          'Content-Type' => 'application/json'
         ],
-      ],
-    ]);
+        'json' => [
+          'PIDE' => [
+            'credencialAnterior' => $credencialAnterior,
+            'credencialNueva' => $credencialNueva,
+            'nuDni' => $nuDni,
+            'nuRuc' => $this->rucUser,
+          ],
+        ],
+      ]);
 
-    $statusCode = $response->getStatusCode();
+      $statusCode = $response->getStatusCode();
 
-    if ($statusCode === 200) {
-      $data = $response->getBody()->getContents();
-      $response = json_decode($data, true);
+      if ($statusCode === 200) {
+        $data = $response->getBody()->getContents();
+        $response = json_decode($data, true);
 
-      if (isset($response['actualizarcredencialResponse']['return']['coResultado'])) {
-        $coResultado = $response['actualizarcredencialResponse']['return']['coResultado'];
-        $message = $response['actualizarcredencialResponse']['return']['deResultado'];
-        if ($coResultado == '0000') {
+        if (isset($response['actualizarcredencialResponse']['return']['coResultado'])) {
+          $coResultado = $response['actualizarcredencialResponse']['return']['coResultado'];
+          $message = $response['actualizarcredencialResponse']['return']['deResultado'];
+          if ($coResultado == '0000') {
+            return $message;
+          }
           return $message;
         }
-        return $message;
+        return 'Error al actualizar credenciales';
       }
       return 'Error al actualizar credenciales';
+    } catch (RequestException $e) {
+      return 'Error al actualizar credenciales';
     }
-    return 'Error al actualizar credenciales';
   }
 }

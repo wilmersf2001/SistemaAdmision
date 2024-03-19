@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('tb_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('credential');
+            $table->string('nuDniUsuario');
+            $table->string('nombresApellidos');
+            $table->string('password');
+            $table->integer('numeroConsultas');
             $table->timestamps();
         });
     }

@@ -118,9 +118,9 @@ class HomeController extends Controller
         return view('admision.reports.inscritos');
     }
 
-    public function updateCredentials()
+    public function userReniec()
     {
-        return view('admision.update-credentials');
+        return view('admision.user-reniec');
     }
 
     public function restricted()

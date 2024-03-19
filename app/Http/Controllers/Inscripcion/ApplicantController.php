@@ -130,4 +130,20 @@ class ApplicantController extends Controller
 
         return redirect()->route('home.modifyApoderado')->with('success', 'Datos del apoderado actualizados correctamente');
     }
+
+    public function getPostulanteByDni($clave)
+    {
+        $dni = '75085350'; /* 77207492   75085350*/
+        $postulanteExiste = Postulante::where('num_documento', $dni)->exists();
+
+        if ($postulanteExiste) {
+            $postulante = Postulante::where('num_documento', $dni)->first();
+
+            if (in_array($postulante->estado_postulante_id, Constants::ESTADO_POSTULANTE_QR)) {
+                return view('inscripcion.informacion-postulante-dni', compact('postulante'));
+            }
+        }
+
+        return view('inscripcion.dni-postulante-no-encontrado');
+    }
 }

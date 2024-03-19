@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inscripcion;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidatePaymentRequest;
+use App\Models\Setting;
 use App\Services\ApiReniecService;
 use App\Models\Banco;
 use App\Models\Modalidad;
@@ -40,6 +41,8 @@ class PayController extends Controller
 
   public function validatePayment(ValidatePaymentRequest $request)
   {
+    $userReniecAleatorio = Setting::inRandomOrder()->first();
+
     $numDocument = $request->numDocument;
     $typeSchool = $request->typeSchoolId;
 
@@ -67,7 +70,7 @@ class PayController extends Controller
       return redirect()->route('start')->with('alert', 'El monto del voucher no coincide para la modalidad seleccionada');
     }
 
-    $applicant = $this->apiReniec->getApplicantDataByDni($numDocument);
+    $applicant = $this->apiReniec->getApplicantDataByDni($userReniecAleatorio, $numDocument);
     $applicant->modalidad_id = $request->modalityId;
     $applicant->colegio_id = $bank->tipo_doc_depo == 1 ? null : ($typeSchool == 1 ? 15496 : 15497);
 
