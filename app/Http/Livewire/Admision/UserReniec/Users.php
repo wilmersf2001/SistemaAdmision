@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admision\UserReniec;
 
 use Livewire\Component;
 use App\Models\Setting;
+use App\Utils\Constants;
 
 class Users extends Component
 {
@@ -39,6 +40,7 @@ class Users extends Component
         $fechaActual = date('Y-m-d');
         $fechaVencimiento = date('Y-m-d', strtotime($fecha));
         $dias = (strtotime($fechaActual) - strtotime($fechaVencimiento)) / (60 * 60 * 24);
-        return $dias;
+        $diasVencer = Constants::DIAS_ESPERA_ACTUALIZAR_CREDENCIAL - $dias;
+        return $diasVencer;
     }
 }
