@@ -9,5 +9,5 @@ class Setting extends Model
 {
     use HasFactory;
     protected $table = 'tb_settings';
-    protected $fillable = ['nuDniUsuario', 'nombresApellidos', 'password', 'numeroConsultas'];
+    protected $fillable = ['nuDniUsuario', 'nombresApellidos', 'password', 'numeroConsultas', 'fechaActualizacionCredencial'];
 }

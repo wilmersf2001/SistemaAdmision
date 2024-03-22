@@ -33,4 +33,12 @@ class Users extends Component
     {
         $this->showModal = !$this->showModal;
     }
+
+    public function diasPorVencer($fecha)
+    {
+        $fechaActual = date('Y-m-d');
+        $fechaVencimiento = date('Y-m-d', strtotime($fecha));
+        $dias = (strtotime($fechaActual) - strtotime($fechaVencimiento)) / (60 * 60 * 24);
+        return $dias;
+    }
 }

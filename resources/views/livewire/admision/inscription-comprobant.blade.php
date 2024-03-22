@@ -82,7 +82,7 @@
                                     @if ($validApplicantExists && $user->getRoleNames()->implode('') === 'admin')
                                         <div class="flex">
                                             <a target="_black"
-                                                href={{ route('pdf.pdfData', ['dni' => $applicant->num_documento]) }}
+                                                href={{ route('pdf.pdfData', ['dni' => $encryptedDniApplicant]) }}
                                                 class="font-medium text-indigo-600 hover:text-indigo-500 pr-2">Visualizar</a>
                                             <span class="relative flex h-3 w-3">
                                                 <span

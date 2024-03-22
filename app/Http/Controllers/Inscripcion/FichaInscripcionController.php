@@ -43,7 +43,7 @@ class FichaInscripcionController extends Controller
             return redirect()->route('ficha.startPdfQuery')->with('error', 'Tus fotos ya han sido rectificadas, por favor vuelva a intentarlo más tarde');
         }
 
-        if ($applicant->estado_postulante_id == Constants::ESTADO_CARNET_ENTREGADO) {
+        if (in_array($applicant->estado_postulante_id, Constants::ESTADO_FICHA_ENTREGADA)) {
             return redirect()->route('ficha.startPdfQuery')->with('success', 'Tu ficha de incripcion ya ha sido generada y tus archivos han sido validados');
         }
 

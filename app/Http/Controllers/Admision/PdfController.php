@@ -9,6 +9,7 @@ use App\Models\Banco;
 use App\Models\Proceso;
 use App\Utils\UtilFunction;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use App\Utils\Constants;
 use Carbon\Carbon;
@@ -17,7 +18,8 @@ class PdfController extends Controller
 {
     public function pdfData($dni)
     {
-        $applicant = Postulante::where('num_documento', $dni)->where('estado_postulante_id', '!=', Constants::ESTADO_INSCRIPCION_ANULADA)->first();
+        $decryptedDniApplicant = Crypt::decryptString($dni);
+        $applicant = Postulante::where('num_documento', $decryptedDniApplicant)->where('estado_postulante_id', '!=', Constants::ESTADO_INSCRIPCION_ANULADA)->first();
 
         if (!$applicant) {
             return redirect()->route('home.inscriptionComprobant')->with('error', 'No se encontró el postulante');

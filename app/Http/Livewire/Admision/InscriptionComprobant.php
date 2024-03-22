@@ -6,11 +6,13 @@ use Livewire\Component;
 use App\Models\Postulante;
 use App\Utils\Constants;
 use App\Http\Requests\View\Message\SearchInscriptionComprobant;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 
 class InscriptionComprobant extends Component
 {
     public $dniApplicant;
+    public $encryptedDniApplicant;
     public $applicant;
     public $applicantExists = false;
     public $validApplicantExists = false;
@@ -39,5 +41,6 @@ class InscriptionComprobant extends Component
         $this->applicant = Postulante::where('num_documento', $this->dniApplicant)
             ->where('estado_postulante_id', '!=', Constants::ESTADO_INSCRIPCION_ANULADA)
             ->first();
+        $this->encryptedDniApplicant = Crypt::encryptString($this->dniApplicant);
     }
 }

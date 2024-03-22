@@ -28,6 +28,7 @@ class UserReniecController extends Controller
             'nombresApellidos' => trim(Str::upper($request->nombresApellidos)),
             'password' => $encryptedPassword,
             'numeroConsultas' => 0,
+            'fechaActualizacionCredencial' => now(),
         ]);
         return redirect()->route('home.userReniec')->with('success', 'Creación de usuario exitosa');
     }
@@ -42,6 +43,7 @@ class UserReniecController extends Controller
 
         $setting->update([
             'password' => Crypt::encryptString($request->input('newPassword')),
+            'fechaActualizacionCredencial' => now(),
         ]);
 
         $response = $this->apiReniec->updateCredentials($setting->nuDniUsuario, $request->input('oldPassword'), $request->input('newPassword'));

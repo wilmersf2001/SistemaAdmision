@@ -57,7 +57,7 @@ class  UtilFunction
     }
 
     $applicantStatus = Postulante::where('num_documento', $dni)->value('estado_postulante_id');
-    if (in_array($applicantStatus, Constants::ESTADOS_VALIDOS_POSTULANTE) && (Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid))) {
+    if (in_array($applicantStatus, Constants::ESTADOS_VALIDOS_POSTULANTE_ADMISION) && (Storage::disk(Constants::DISK_STORAGE)->exists($urlPhotoValid))) {
       return $dniPath;
     }
     return 0;

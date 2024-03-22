@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nombresApellidos');
             $table->string('password');
             $table->integer('numeroConsultas');
+            $table->dateTime('fechaActualizacionCredencial');
             $table->timestamps();
         });
     }

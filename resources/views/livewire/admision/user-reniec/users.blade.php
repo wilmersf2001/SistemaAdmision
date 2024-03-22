@@ -8,8 +8,8 @@
     </div>
     @if ($users->total() > 0)
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             <div class="flex items-center">
@@ -32,6 +32,11 @@
                             </div>
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            <div class="flex items-center">
+                                Días por Vencer
+                            </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             <div class="flex items-center justify-center">
                                 Acción
                             </div>
@@ -41,21 +46,22 @@
                 <tbody>
                     @foreach ($users as $i => $user)
                         <tr class="bg-white border-b dark:bg-white-800 dark:border-white-700">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $user->nuDniUsuario }}
                             </th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $user->nombresApellidos }}
                             </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 {{ $user->numeroConsultas }}
                             </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                                {{ $user->created_at }}
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ date('Y-m-d', strtotime($user->created_at)) }}
                             </td>
-                            <td
-                                class="flex justify-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <x-days-expire-credentials-semaforo :dias="$this->diasPorVencer($user->fechaActualizacionCredencial)" />
+                            </td>
+                            <td class="flex justify-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 <div class="flex justify-center">
                                     <span class="sm:block mr-3">
                                         <div class="relative">
