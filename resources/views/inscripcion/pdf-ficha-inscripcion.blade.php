@@ -187,8 +187,12 @@
                 <div class="info-contacto">
                     <h5 class="items">DATOS PERSONALES</h5>
                     <ul>
-                        <li style="display: inline-block; margin-right:160px"><b>DNI:</b>
-                            {{ $postulante->num_documento }}</li>
+                        @if ($postulante->tipo_documento == 1)
+                            <li style="display: inline-block; margin-right:160px"><b>DNI:</b>
+                            @else
+                            <li style="display: inline-block; margin-right:160px"><b>CE:</b>
+                        @endif
+                        {{ $postulante->num_documento }}</li>
                         <li style="display: inline-block;"><b>Fecha de nacimiento:</b>
                             {{ $postulante->fecha_nacimiento }}</li>
                         <li><b>Nombres y Apellidos: </b> {{ $postulante->nombres }} {{ $postulante->ap_paterno }}
