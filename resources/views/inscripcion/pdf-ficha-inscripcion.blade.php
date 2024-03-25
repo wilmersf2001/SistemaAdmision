@@ -228,7 +228,7 @@
                             mi
                             inscripción como postulante al presente Concurso de Admisión, son copia fiel al original; en
                             caso de faltar
-                            a la verdad, me someto a las sanciones correspondientes (Art.23 del Reglamento del presente
+                            a la verdad, me someto a las sanciones correspondientes (Art.25 del Reglamento del presente
                             Concurso de
                             Admisión).</li>
                         <li> He culminado mis estudios secundarios. </li>
@@ -239,12 +239,12 @@
                             cronograma
                             del presente Concurso de Admisión en caso contrario me someto a las sanciones
                             correspondientes
-                            (Art.68 del
+                            (Art.70 del
                             Reglamento del presente Concurso de Admisión).
                         </li>
                     </ul>
                     <p style="font-size: 12px; padding: 0 10px;">
-                        No tengo vinculo familiar con trabajador docente y no docente de la UNPRG (Artículo 28). Caso
+                        No tengo vinculo familiar con trabajador docente y/o no docente de la UNPRG. Caso
                         contrario los datos de mi familiar son:
                     </p>
                     <br>
