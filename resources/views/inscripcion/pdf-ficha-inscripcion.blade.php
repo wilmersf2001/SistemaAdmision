@@ -192,7 +192,7 @@
                             @else
                             <li style="display: inline-block; margin-right:160px"><b>CE:</b>
                         @endif
-                        {{ $postulante->num_documento }}</li>
+                        {{ $postulante->codigo }}</li>
                         <li style="display: inline-block;"><b>Fecha de nacimiento:</b>
                             {{ $postulante->fecha_nacimiento }}</li>
                         <li><b>Nombres y Apellidos: </b> {{ $postulante->nombres }} {{ $postulante->ap_paterno }}

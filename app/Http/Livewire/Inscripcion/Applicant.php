@@ -94,7 +94,7 @@ class Applicant extends Component
     $this->minimumYear = UtilFunction::getMinimumYearByModalidad($this->applicant->modalidad_id);
     $this->universities = UtilFunction::getUniversitiesByModality($this->applicant->modalidad_id, $this->typeSchool, $formDataService);
     $this->numberProcess = Proceso::getProcessNumber();
-    $this->applicantFilesExisteBackup = UtilFunction::applicantFilesExisteBackup($this->applicant->num_documento);
+    $this->applicantFilesExisteBackup = UtilFunction::applicantFilesExisteBackup($this->bank->num_doc_depo);
     if ($this->bank->tipo_doc_depo == Constants::TIPO_DOCUMENTO_CARNET_EXTRANJERIA) {
       $this->searchSchoolName = $typeSchool == 1 ? "OTROS COLEGIOS NACIONALES" : "OTROS COLEGIOS PARTICULARES";
       $this->LocationOutsideCountry(26);
