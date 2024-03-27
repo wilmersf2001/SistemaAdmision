@@ -244,7 +244,7 @@
                         </li>
                     </ul>
                     <p style="font-size: 12px; padding: 0 10px;">
-                        No tengo vinculo familiar con trabajador docente y/o no docente de la UNPRG. Caso
+                        No tengo vinculo familiar con trabajador docente y/o no docente de la UNPRG(Artículo 28). Caso
                         contrario los datos de mi familiar son:
                     </p>
                     <br>
